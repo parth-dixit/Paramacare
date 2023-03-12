@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <title>Parama Care</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Icon Font Css -->
+    <link rel="stylesheet" href="plugins/icofont/icofont.min.css" />
+    <!-- Slick Slider  CSS -->
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css" />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+
+    <!-- jQuery library file -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAaZx5Ud1-T3oLP6s0LFafIVgUkO_x9o7o"></script>
+
+    <!-- Datatable plugin JS library file -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+  </head>
+
+  <body id="top">
+    <header>
+      <nav class="navbar navbar-expand-lg navigation" id="navbar" style="background: aliceblue;">
+          <div class="container" style="display: contents;margin: 0%;">
+              <a class="navbar-brand" href="Schedule_Appointment.html">
+                  <img src="images/camohealth.png" alt="" class="img-fluid">
+              </a>
+
+              <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain"
+                  aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="icofont-navigation-menu"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarmain">
+                  <ul class="navbar-nav ml-auto">
+
+                      <li class="nav-item"><a class="nav-link" href="EditUser.html">Profile</a></li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="department.html" id="dropdown02"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Appointments <i
+                                  class="icofont-thin-down"></i></a>
+                          <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                              <li><a class="dropdown-item" href="Users_Upcoming_Appointments.html">Upcoming
+                                      Appointments</a></li>
+                              <li><a class="dropdown-item" href="Users_Appointment_History.html">Appointment
+                                      History</a></li>
+                          </ul>
+                      </li>
+                      <li class="nav-item"><a class="nav-link" href="UserSupportList.html">Support</a>
+                      </li>
+                      <li class="nav-item"><a class="nav-link" href="EducationHub_User.html">Resources</a></li>
+
+                      <li class="nav-item"><a class="nav-link" onclick="logout()" href="Login_Users.html">Logout</a></li>
+                      <div class="btn-container ">
+                          <a href="Schedule_Appointment.html" class="btn btn-main-2 btn-icon btn-round-full"
+                              style="margin-top: 2.5%;">Schedule Appoinment </a>
+                      </div>
+                      
+                  </ul>
+              </div>
+          </div>
+      </nav>
+  </header>
+    <section class="page-title bg-1">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="block text-center">
+              <span class="text-black">Schedule your Appointment</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="page-search">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+
+            <!-- Advance Search -->
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <div class="form-group">
+                  <select class="form-control" id="Specialization">
+                    <option>Select Category</option>
+                    <option value="1" selected>Sleep Training</option>
+                    <option value="2">Lactation Consultation</option>
+                    <option value="3">Doula Match</option>
+                    <option value="4">Midwife Therapy</option>
+                    <option value="5">Pelivic Floor Therapy</option>
+                    <option value="6">Postpartum Depression Therapy</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group col-md-3">
+                <div class="form-group">
+                  <select class="form-control" id="miles">
+                    <option value="0" selected>Select miles</option>
+                    <option value="10">Upto 10mi</option>
+                    <option value="20">Upto 20mi</option>
+                    <option value="30">Upto 30mi</option>
+                    <option value="40">Upto 40mi</option>
+                    <option value="50">Upto 50mi</option>
+                    <option value="60">Upto 100mi</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group col-md-3">
+                <div class="form-group">
+                  <input type="text" id="zipcode" class="form-control" placeholder="Zipcode" />
+                  <input type="hidden" id="loc_lat" />
+                  <input type="hidden" id="loc_long" />
+                </div>
+              </div>
+              <div class="form-group col-md-3">
+                <button id="search" class="btn btn-main-2 btn-icon btn-round-full" style="margin-top: -2%;">Search Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <div class="custom_table p-3" style:display="none">
+      <table id="Video_Details" class="display" style:display="none">
+        
+      </table>
+    </div>
+    <script>
+      $(document).ready(function () {
+        function loadTable(json, url, lat, long) {
+          // datatable html element
+          let tableElement = $("#Video_Details");
+          let spec = json.speciality;
+          if ($.fn.DataTable.isDataTable(tableElement)) {
+            tableElement.DataTable().destroy();
+          }
+
+          // datatable initialization
+          tableElement.DataTable({
+            // Ajax for api call
+            ajax: {
+              // api endpoint uri
+              url: url,
+
+              // api request method
+              type: "GET",
+              headers: {
+                     'Content-Type': "application/json",
+                     'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    },
+            },
+            // columns
+            columns: [
+              { data: "first_name", title: "First Name" },
+              { data: "last_name", title: "Last Name" },
+              { data: "address", title: "Address" },
+              { data: "city", title: "City" },
+              { data: "zipcode", title: "Zipcode" },
+              {
+                data: "id",
+                data: "first_name",
+                title: "Schedule",
+                render: function (id,type,row,meta) {
+                  let pracid = row['id'];
+                  let fname = row['first_name'];
+                  return `<a href="appointmentBooking.html?practitionerId=${pracid}&speciality=${spec}&practitionerName=${fname}">Schedule</a>`;
+                },
+              },
+            ],
+          });
+        }
+
+        var searchInput = "zipcode";
+        let lat = "";
+        let long = "";
+
+        // $("#Specialization").change(function () {
+        //   speciality = $("#Specialization").val();
+        //   alert(speciality)
+        // });
+        //alert(speciality);
+        //let lat
+        //$(document).ready(function () {
+        var autocomplete;
+        autocomplete = new google.maps.places.Autocomplete(document.getElementById(searchInput), {
+          types: ["geocode"],
+        });
+
+        let isGooglePlaceChanged = false;
+
+        //let url =   `http://3.229.127.143:8080/geo/getAllmatchingPract/1/0/`;
+        google.maps.event.addListener(autocomplete, "place_changed", function () {
+          var near_place = autocomplete.getPlace();
+          lat = near_place.geometry.location.lat();
+          console.log(lat);
+          long = near_place.geometry.location.lng();
+          console.log(long);
+          isGooglePlaceChanged = near_place != null;
+        });
+        //  on form submission
+        $("#search").on("click", function () {
+          let speciality = $("#Specialization").val();
+          let miles = $("#miles").val();
+          let url = `http://3.229.127.143:8095/geo/getAllmatchingPract/${speciality}/${miles}`;
+
+          if (isGooglePlaceChanged) {
+            url = `http://3.229.127.143:8095/geo/newlocationPract/${speciality}/${miles}/${lat}/${long}`;
+           // url = `http://3.229.127.143:8080/geo/newlocationPract/0/10/shraddha2sinddy@gmail.com/43.003745/-78.81160659999999`;
+          }
+
+          let json = {};
+          json.miles = miles;
+          json.speciality = speciality;
+          json.lat = lat;
+          json.long = long;
+
+          loadTable(json, url, lat, long);
+        });
+      });
+    </script>
+    <!-- <script>
+    //var searchInput = 'search_input';
+    $(document).ready(function () {
+
+     // let lat = "";
+     // let long = "";
+//
+     // if ($("#g-lat-long").val() != "") {
+     //   lat = $("#g-lat-long").val().split(",")[0];
+     //   long = $("#g-lat-long").val().split(",")[1];
+     // }
+      
+        
+        //$("#zipcode").change(function () {
+
+          
+         // console.log(loc_lat);
+         
+        });
+        $("#search").click(function () {
+         // alert("Video inside");
+		
+			//$("#Video_Details").dataTable().fnDestroy();
+          console.log(lat);
+          $("#Video_Details").DataTable({
+
+            // // Ajax for api call
+            ajax: {
+              //   // api endpoint uri
+              //urlString: "http://3.229.127.143:8080/geo/getAllmatchingPract/1/0/shraddha2sinddy@gmail.com",
+              url: url,
+              type: "GET",
+              headers: {
+                authorization: localStorage.getItem('Jwt'),
+              },
+              data: function (json) {
+                console.log(json);
+                return json;
+              },
+            },
+            columns: [
+              { data: "first_name", title: "First Name" },
+              { data: "last_name", title: "Last Name" },
+              { data: "speciality", title: "Speciality" },
+              { data: "address", title: "Address" },
+              { data: "city", title: "City" },
+              { data: "zipcode", title: "Zipcode" },
+              {
+                data: "id",
+                title: "Schedule",
+                render: function (practitionerId) {
+                  return `<a href="Appointment_Booking.html?practitionerId=${practitionerId}">Schedule</a>`;
+			//"bDestroy": true,
+                },
+              },
+            ],
+          });
+        });
+      });
+  </script> -->
+  </body>
+</html>
+
+<footer class="footer section gray-bg" style="padding: 2%;">
+  <div class="row">
+      <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+  </div>
+</footer>

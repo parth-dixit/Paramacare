@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  
+  <title>Parama Care</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <!-- Icon Font Css -->
+  <link rel="stylesheet" href="plugins/icofont/icofont.min.css">
+  <!-- Slick Slider  CSS -->
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body id="top">
+
+<header>
+	<nav class="navbar navbar-expand-lg navigation" id="navbar" style="background: aliceblue;">
+		<div class="container" style="display: contents;margin: 0%;">
+		 	<a class="navbar-brand" href="Schedule_Appointment.html">
+				<img src="images/camohealth.png" alt="" class="img-fluid">
+			</a>
+
+		  	<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="icofont-navigation-menu"></span>
+		    </button>
+	  
+		  <div class="collapse navbar-collapse" id="navbarmain">
+			<ul class="navbar-nav ml-auto">
+			    <li class="nav-item"><a class="nav-link" href="EducationHub_User.html">Resources</a></li>
+
+			   <li class="nav-item"><a class="nav-link" href="index.html">Log Out</a></li>
+			</ul>
+		  </div>
+		</div>
+	</nav>
+</header>
+
+<section>
+    <div style="text-align-last: center;margin-left: 2%;">
+        <h3>To help us understand you better!</h3><hr>
+    </div>
+    <div id="snackbar">Your details has been added</div>
+                                <div id="failure">Details could not be added, please try again later</div>
+    <div style="display: flex;">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <label><b>Are you pregnant?</b></label> 
+            <input type="radio" id="pregYes" name="preg" onclick="ifYes();"> Yes
+            <input type="radio" id="pregNo" name="preg" style="margin-left: 1%;" onclick="ifNo();"> No
+        </div>
+    </div>
+    <div style="display: flex;">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div id="ifYes">
+                <label style="margin-right:1%"><b>Which Trimester?</b></label> <input type="number" id="txtTri" placeholder="Enter your Trimester" min="0" max="12" style="width:35%" onkeyup="ValidateTri(event)"> 
+             </div>
+        </div>
+    </div>
+    <div style="display: flex;">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div style="margin-top: 1%;">
+                <label><b>What consultations are you looking for?</b></label> 
+            </div>
+        </div>
+    </div>
+    <div style="display: flex;">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <table style="width: 100%;">
+                <tr>
+                    <td><input type="checkbox" id="sleepTherapyID"> Sleep Therapy</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" id="lactationID"> Lactation consulting</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" id="doulaMatchID"> Doula Match</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" id="midWifeMatchID"> Mid Wife Match</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" id="pelvicFloorID"> Pelvic Floor Therapy</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" id="postPartumID"> PostPartum Depression Therapy</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" id="nutritionID"> Nutrition consulting</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <div style="margin: 2%;text-align-last: center;">
+	<input type="submit" class="btn btn-main btn-round-full" id="save" onclick="Save()" value="Save">
+    </div>
+    
+</section>
+
+   
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+    
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/jquery.js"></script>
+    <!-- Bootstrap 4.3.2 -->
+    <script src="plugins/bootstrap/js/popper.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/counterup/jquery.easing.js"></script>
+    <!-- Slick Slider -->
+    <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+    <!-- Counterup -->
+    <script src="plugins/counterup/jquery.waypoints.min.js"></script>
+    
+    <script src="plugins/shuffle/shuffle.min.js"></script>
+    <script src="plugins/counterup/jquery.counterup.min.js"></script>
+    <!-- Google Map -->
+    <script src="plugins/google-map/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>    
+    
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+
+  </body>
+  </html>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous">
+</script>
+ <script type="text/javascript">
+  $(document).ready(function(){
+    addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("save").click();
+        }
+        });
+       $('#ifYes').hide();
+  });
+
+  function ifYes(){
+      $('#ifYes').show();
+  }
+
+  function ifNo(){
+      $('#ifYes').hide();
+  }
+
+  function ValidateTri(e){
+        if($('#txtTri').val()>3){
+            alert("Trimester cannot be more than 3!");
+            return false
+        }
+    }
+
+  function Save(){
+      var isPregnant;
+      if($('#pregNo').prop("checked")){
+        isPregnant = false;
+      }
+      else if($('#pregYes').prop("checked")){
+        isPregnant = true;
+        if($('#txtTri').val() == ''){
+            alert("Please enter Trimester");
+            return false;
+        }
+      }
+      else{
+          alert("Please select are you pregnant?");
+          return false;
+      }
+    $.ajax({
+  url: 'http://3.229.127.143:8095/beforeLogin/onboarding',
+  type: "PUT",
+  headers: {
+                      'Content-Type': "application/json",
+                      'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    }, 
+  data: JSON.stringify({
+  isPregnant:isPregnant,
+  triemester:$('#txtTri').val(),
+  sleepTraining:$('#sleepTherapyID').prop("checked"),
+  lactationConsultation:$('#lactationID').prop("checked"),
+  doulaMatch:$('#doulaMatchID').prop("checked"),
+  midwifeTherapy:$('#midWifeMatchID').prop("checked"),
+  pelvicFloorTherapy:$('#pelvicFloorID').prop("checked"),
+  depressionTherapy:$('#postPartumID').prop("checked"),
+  nutritionTherapy:$('#nutritionID').prop("checked"),
+  }),
+  dataType: "text",
+  contentType: "application/json;charset=utf-8",
+  success: function (data) {
+
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(() => { window.location.href = "schedule_appointment.html" ; }, 1000);
+  },
+  error: function (error) {
+    var x = document.getElementById("failure");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
+});
+
+      
+  }
+</script>
+
+<footer class="footer section gray-bg" style="padding: 2%;">
+    <div class="row">
+        <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+    </div>
+</footer>

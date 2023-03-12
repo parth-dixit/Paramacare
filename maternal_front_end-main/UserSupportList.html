@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  
+  <title>Parama Care</title>
+
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/icofont/icofont.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href=
+  "https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+    
+       <!-- jQuery library file -->
+       <script type="text/javascript" 
+       src="https://code.jquery.com/jquery-3.5.1.js">
+       </script>
+    
+        <!-- Datatable plugin JS library file -->
+       <script type="text/javascript" src=
+  "https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js">
+       </script>
+
+</head>
+
+<body id="top">
+
+  <header>
+    <nav class="navbar navbar-expand-lg navigation" id="navbar" style="background: aliceblue;">
+        <div class="container" style="display: contents;margin: 0%;">
+              <a class="navbar-brand" href="index.html">
+                  <img src="images/camohealth.png" alt="" class="img-fluid">
+              </a>
+
+              <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icofont-navigation-menu"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarmain">
+            <ul class="navbar-nav ml-auto">
+
+              <li class="nav-item"><a class="nav-link" href="EditUser.html">Profile</a></li>
+                
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle"  id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Appointments <i class="icofont-thin-down"></i></a>
+        <ul class="dropdown-menu" aria-labelledby="dropdown02">
+          <li><a class="dropdown-item" href="Users_Upcoming_Appointments.html">Upcoming
+            Appointments</a></li>
+          <li><a class="dropdown-item" href="Users_Appointment_History.html" >Appointment
+            History</a></li>
+        </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="UserSupportList.html" style="color: blue;">Support</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="EducationHub_User.html">Resources</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="logout()" href="Login_Users.html">Logout</a></li>
+              <li class="nav-item"><a class="nav-link" >Welcome <span id="userName"></span></a></li>
+      <div class="btn-container ">
+        <a href="Schedule_Appointment.html" class="btn btn-main-2 btn-icon btn-round-full"
+            style="margin-top: 2.5%;">Schedule Appoinment </a>
+    </div>
+
+                
+            </ul>
+          </div>
+        </div>
+    </nav>
+</header>
+      <section>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block text-center">
+                    <span class="text-black">Support</span>
+                </div>
+            </div>
+        </div>
+        <div style="float: right;margin-right: 5%;">
+            <button id="btnComplaint" class="btn btn-main-2 btn-icon btn-round-full" onclick="AddComplaint()">Add
+                Complaint</button>
+        </div>
+    </section>
+
+<div style="margin-right: 5%;margin-left: 5%;margin-top: 2%;">
+    <table id="complaints">
+      <thead>
+        <tr>
+          <th>Complaint Id</th>
+          <th>Practitioner Name</th>
+          <th>Complaint Date</th>
+          <th>Description</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+    </table>
+</div>
+
+
+   
+    <!-- Main Js File -->
+    <script src="js/script.js"></script>
+                <script>
+
+                  src = "https://code.jquery.com/jquery-3.6.0.js";
+                  integrity = "sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=";
+                  crossorigin = "anonymous";
+          
+                $(document).ready(function () {
+                  document.getElementById("userName").innerHTML = JSON.parse(localStorage.getItem('Jwt')).userName;
+                  fetch("http://3.229.127.143:8095/api/step3/userComplaint",{
+                    headers: {
+                      'Content-Type': "application/json",
+                      'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    }, 
+                    method:"GET"
+                  })
+                    .then(res => res.json())
+                    .then((data) => {
+                      
+                      data.forEach((el) => {
+                        el["view_details"] = "View Details";
+                      });
+                      
+                     
+                      localStorage.setItem("complaint", JSON.stringify(data));
+                      $("#complaints").DataTable({
+                        data: data,
+                        columns: [
+                          { data: "complaintId" },
+                          { data: "practitionerName"},
+                          {
+                              data: "created_at",
+                              render: function (data, type, row, meta) {
+                                if (type === "display") {
+                                  // // data =
+                                  //  <a class="btn btn-main btn-round-full" target="popup" onclick="reject()"style="color: white;" >Delete</a>
+                                  var options = {year: 'numeric', month: 'long', day: 'numeric' };
+                                  today=new Date(row.created_at);
+                                  data=today.toLocaleDateString("en-US", options); 
+                       
+                      }
+                      return data;
+                    },
+                  },
+                            { data: "description"},
+                            { data: "status"},
+                          
+                        ],
+                      });
+                    });      
+                } )
+
+                function logout(){
+                   localStorage.removeItem('Jwt'); 
+	              }
+                 </script> 
+                  
+				
+                  <script>
+                    function AddComplaint() {
+                        window.location.href = "User_Support.html";
+                    }
+                </script>
+     
+
+  </body>
+  </html>
+  <footer class="footer section gray-bg" style="padding: 2%;">
+    <div class="row">
+  <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+</div>
+</footer>
+ 

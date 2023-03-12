@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  
+  <title>Parama Care</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <!-- Icon Font Css -->
+  <link rel="stylesheet" href="plugins/icofont/icofont.min.css">
+  <!-- Slick Slider  CSS -->
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body id="top">
+
+    <header>
+        <nav class="navbar navbar-expand-lg navigation" id="navbar" style="background: aliceblue;">
+            <div class="container" style="display: contents;margin: 0%;">
+                  <a class="navbar-brand" href="index.html">
+                      <img src="images/camohealth.png" alt="" class="img-fluid">
+                  </a>
+    
+                  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="icofont-navigation-menu"></span>
+              </button>
+          
+              <div class="collapse navbar-collapse" id="navbarmain">
+                <ul class="navbar-nav ml-auto">
+				    <li class="nav-item"><a class="nav-link" href="EditUser.html">Profile</a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="department.html" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: blue;">Appointments <i class="icofont-thin-down"></i></a>
+						<ul class="dropdown-menu" aria-labelledby="dropdown02">
+							<li><a class="dropdown-item" href="Upcoming_Appointments.html">Upcoming Appointments</a></li>
+							<li><a class="dropdown-item" href="Appointment_History.html">Appointment History</a></li>
+						</ul>
+					  </li>
+
+                    <li class="nav-item"><a class="nav-link" href="UserSupportList.html">Support</a></li>
+					<li class="nav-item"><a class="nav-link" href="EducationHub_User.html">Resources</a></li>
+					<li class="nav-item"><a class="nav-link" onclick="logout()" href="Login_Users.html">Logout</a></li>
+          <li class="nav-item"><a class="nav-link" >Welcome <span id="userName"></span></a></li>
+          <div class="btn-container ">
+            <a href="Schedule_Appointment.html" class="btn btn-main-2 btn-icon btn-round-full" style = "margin-top: 2.5%;" >Schedule Appoinment </a>
+          </div>
+                </ul>
+              </div>
+            </div>
+        </nav>
+    </header>
+	
+
+
+<section class="page-title bg-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block text-center">
+          <span class="text-black">Schedule Apppointment</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section contact-info pb-0">
+    <div class="container">
+         <div class="row">
+            <div class="col-lg-4 col-sm-6 col-md-6"> 
+					<div class="form-group">
+							<select class="form-control" id="Specialization">
+							  <option>Select Category</option>
+							  <option>Sleep Training</option>
+							  <option>Lactation Consultation</option>
+							  <option>Doula Match</option>
+							  <option>Midwife Therapy</option>
+							  <option>Pelivic Floor Therapy</option>
+							  <option>Postpartum Depression Therapy</option>
+							</select>
+						</div>
+				
+            </div>
+            <div class="col-lg-4 col-sm-6 col-md-6">
+				<div class="form-group">
+					<select class="form-control" id="miles">
+					  <option>Select miles</option>
+					  <option>Upto 10mi</option>
+					  <option>Upto 20mi</option>
+					  <option>Upto 30mi</option>
+					  <option>Upto 40mi</option>
+					  <option>Upto 50mi</option>
+					  <option>Upto 100mi</option>
+					</select>
+				</div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-md-6">
+					<div class="form-group">
+						<input type = "text" id="search" class="form-control" placeholder="Zipcode">
+					 </div> 
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-form-wrap section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="section-title text-center">
+                    <a class="btn btn-main btn-round-full" href="#" >Search</a>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+    
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/jquery.js"></script>
+    <!-- Bootstrap 4.3.2 -->
+    <script src="plugins/bootstrap/js/popper.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/counterup/jquery.easing.js"></script>
+    <!-- Slick Slider -->
+    <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+    <!-- Counterup -->
+    <script src="plugins/counterup/jquery.waypoints.min.js"></script>
+    
+    <script src="plugins/shuffle/shuffle.min.js"></script>
+    <script src="plugins/counterup/jquery.counterup.min.js"></script>
+    <!-- Google Map -->
+    <script src="plugins/google-map/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>    
+    
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        document.getElementById("userName").innerHTML = JSON.parse(localStorage.getItem('Jwt')).userName;
+    });
+      function logout(){
+         localStorage.removeItem('Jwt'); 
+	    }
+    </script>
+  </body>
+  </html>
+
+  <footer class="footer section gray-bg" style="padding: 2%;">
+    <div class="row">
+        <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+    </div>
+</footer>

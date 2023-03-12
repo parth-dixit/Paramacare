@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  
+  <title>Parama Care</title>
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="plugins/icofont/icofont.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href=
+  "https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+    
+       <!-- jQuery library file -->
+       <script type="text/javascript" 
+       src="https://code.jquery.com/jquery-3.5.1.js">
+       </script>
+    
+        <!-- Datatable plugin JS library file -->
+       <script type="text/javascript" src=
+  "https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js">
+       </script>
+
+</head>
+
+<body id="top">
+
+  <header>
+    <nav class="navbar navbar-expand-lg navigation" id="navbar" style="background: aliceblue;">
+        <div class="container" style="display: contents;margin: 0%;">
+          <a class="navbar-brand" href="Admin_Complaints_Open.html">
+            <img src="images/camohealth.png" alt="" class="img-fluid">
+        </a>
+
+              <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icofont-navigation-menu"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarmain">
+            <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="Admin_Complaints_Open.html" >Complaints</a></li>
+                <li class="nav-item"><a class="nav-link" href="Admin_Patient_Details.html" >Patient</a></li>
+      <li class="nav-item">
+	      <a class="nav-link"  id="dropdown02" aria-haspopup="true" aria-expanded="false" style="color: blue;" href="Admin_Practitioner_Details.html">Practitioner</a>
+        </li>
+                <li class="nav-item"><a class="nav-link" href="Admin_Video_Upload.html" >Videos</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="logout()" href="Admin_index.html">Logout</a></li>
+      <li class="nav-item"><a class="nav-link" >Welcome <span id="userName"></a></li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+</header>
+
+      <nav class="navbar navbar-expand-lg navigation" id="navbar">
+        <div class="container" style="display: contents;margin: 0%;">
+      
+          <div class="collapse navbar-collapse" id="navbarmain">
+            <ul class="navbar-nav" style="margin-left: 38%;">
+                <li class="nav-item"><a class="nav-link" href="Admin_Practitioner_Requests.html" >Practitioner Requests</a></li>
+                <li class="nav-item"><a class="nav-link" href="Admin_Practitioner_Details.html" style="color: blue;">Practitioner Details</a></li>
+            </ul>
+        </div>
+      </div>
+  </nav>
+  <div class="custom_table">
+    <table id="Admin_Practitioner_Details" class="display">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+			
+        <script>
+          src = "https://code.jquery.com/jquery-3.6.0.js";
+          integrity = "sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=";
+          crossorigin = "anonymous";
+  
+          $(document).ready(function () {
+            document.getElementById("userName").innerHTML = JSON.parse(localStorage.getItem('Jwt')).userName;
+          fetch("http://3.229.127.143:8095/users/getAllPractitionerDetails",{
+                    headers: {
+                      'Content-Type': "application/json",
+                      'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    }, 
+                    method:"GET"
+                  })
+            .then((data) => data.json())
+            .then((data) => {
+              data.forEach((el) => {
+                el["view_details"] = "View Details";
+              });
+             
+              localStorage.setItem("practitionerDetails", JSON.stringify(data));
+              var hr = "View Details";
+              $("#Admin_Practitioner_Details").DataTable({
+                data: data,
+                data1: "view details",
+                columns: [
+                  { data: "firstName" },
+                  { data: "phoneNumber" },
+                  { data: "email" },
+                  {
+                    data: "view_details",
+                    render: function (data, type, row, meta) {
+                      console.log(row);
+                      if (type === "display") {
+                        data =
+                          `<a href="Admin_Practitioner_Detail_View.html?user=${row.id}">` +
+                          data +
+                          "</a>";
+                      }
+                      return data;
+                    },
+                  },
+                ],
+              });
+            });
+        } )
+
+        
+        function logout(){
+         localStorage.removeItem('Jwt'); 
+	    }
+         </script> 
+          
+          
+
+  </body>
+  </html>
+ 
+  <footer class="footer section gray-bg" style="padding: 2%;">
+    <div class="row">
+        <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+    </div>
+</footer>

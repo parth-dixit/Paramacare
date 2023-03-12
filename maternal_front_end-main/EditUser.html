@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Parama Care</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAaZx5Ud1-T3oLP6s0LFafIVgUkO_x9o7o"></script>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Icon Font Css -->
+    <link rel="stylesheet" href="plugins/icofont/icofont.min.css">
+    <!-- Slick Slider  CSS -->
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body id="top">
+
+    <header>
+        <nav class="navbar navbar-expand-lg navigation" id="navbar" style="background: aliceblue;">
+            <div class="container" style="display: contents;margin: 0%;">
+                <a class="navbar-brand" href="Schedule_Appointment.html">
+                    <img src="images/camohealth.png" alt="" class="img-fluid">
+                </a>
+
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain"
+                    aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icofont-navigation-menu"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarmain">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" style="color: blue;">Profile</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="department.html" id="dropdown02"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Appointments <i
+                                    class="icofont-thin-down"></i></a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                                <li><a class="dropdown-item" href="Users_Upcoming_Appointments.html">Upcoming
+                                        Appointments</a></li>
+                                <li><a class="dropdown-item" href="Users_Appointment_History.html">Appointment
+                                        History</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="UserSupportList.html">Support</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="EducationHub_User.html">Resources</a></li>
+
+                        <li class="nav-item"><a class="nav-link" onclick="logout()" href="Login_Users.html">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" >Welcome <span id="userName"></span></a></li>
+                        <div class="btn-container ">
+                            <a href="Schedule_Appointment.html" class="btn btn-main-2 btn-icon btn-round-full"
+                                style="margin-top: 2.5%;">Schedule Appoinment </a>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <section class="section appoinment" style="padding-top: 0.5%;margin: 2%;">
+        <div id="snackbar">Your profile has been updated</div>
+    <div id="failure">Your profile could not be updated, please try again later</div>
+        <div style="text-align-last: center;margin-left: 2%;">
+            <h3>Edit Profile</h3>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <b>First Name:</b>
+            </div>
+            <div class="col-sm">
+                <b>Last Name:</b>
+            </div>
+            <div class="col-sm">
+                <b>Date of Birth:</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <input name="fname" id="fname" type="text" class="form-control">
+            </div>
+            <div class="col-sm">
+                <input name="lname" id="lname" type="text" class="form-control">
+            </div>
+            <div class="col-sm">
+                <input name="dob" id="dob" type="date" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <b>Address (Line 1):</b>
+            </div>
+            <div class="col-sm">
+                <b>Address (Line 2):</b>
+            </div>
+            <div class="col-sm">
+                <b>City:</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <input name="add1" id="add1" type="text" class="form-control">
+                <input name="g-lat-long" id="g-lat-long" type="hidden" hidden />
+            </div>
+            <div class="col-sm">
+                <input name="add2" id="add2" type="text" class="form-control" placeholder="Optional">
+            </div>
+            <div class="col-sm">
+                <input name="city" id="city" type="text" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <b>State:</b>
+            </div>
+            <div class="col-sm">
+                <b>Zipcode:</b>
+            </div>
+            <div class="col-sm">
+                <b>Email:</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col-sm">
+                        <input
+                        name="state"
+                        id="state"
+                        type="text"
+                        class="form-control"
+                        readonly
+                      />
+
+            </div>
+            <div class="col-sm">
+                <input name="zip" id="zip" type="text" class="form-control" readonly>
+            </div>
+            <div class="col-sm">
+                <input name="email" id="email" type="text" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <b>Phone:</b>
+            </div>
+            <div class="col-sm">
+                <b>Insurance Number:</b>
+            </div>
+            <div class="col-sm">
+                <b>Insurance Copy:</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <input name="contact" id="contact" type="text" class="form-control"
+                    pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+            </div>
+            <div class="col-sm">
+                <input name="inum" id="inum" type="text" class="form-control">
+            </div>
+            <div class="col-sm">
+                <input type="button" class="btn btn-main btn-round-full" id="btnFileUpload" value="Attach" />
+                <span id="spnFilePath"></span>
+                <input type="file" id="FileUpload" style="display: none" />
+                <span id="fileuploaded"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm">
+                <b>Are you pregnant?:</b>
+            </div>
+            <div class="col-sm">
+                <b>What consultations are you looking for?:</b>
+            </div>
+            <div class="col-sm"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <input type="radio" id="pregYes" name="preg" onclick="ifYes();"> Yes
+                <input type="radio" id="pregNo" name="preg" style="margin-left: 1%;" onclick="ifNo();"> No
+                <div id="ifYes">
+                    <div>
+                        <b>Which Trimester?:</b>
+                    </div>
+                    <div>
+                        <input type="number" id="txtTri" placeholder="Enter your Trimester" min="0" max="12"
+                            style="width: 100%" onkeyup="ValidateTri(event)">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <table style="width: 100%;">
+                    <tr>
+                        <td><input type="checkbox" id="sleepTherapyID"> Sleep Therapy</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="lactationID"> Lactation consulting</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="doulaMatchID"> Doula Match</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="midWifeMatchID"> Mid Wife Match</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="pelvicFloorID"> Pelvic Floor Therapy</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="postPartumID"> PostPartum Depression Therapy</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="nutritionID"> Nutrition consulting</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm"></div>
+        </div>
+        <div style="margin: 2%;text-align-last: center;">
+            <button class="btn btn-main-2 btn-icon btn-round-full" style="width: 10%;" type="submit" id="save" onclick="Save()">Save</button>
+        </div>
+    </section>
+
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/jquery.js"></script>
+    <!-- Bootstrap 4.3.2 -->
+    <script src="plugins/bootstrap/js/popper.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/counterup/jquery.easing.js"></script>
+    <!-- Slick Slider -->
+    <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+    <!-- Counterup -->
+    <script src="plugins/counterup/jquery.waypoints.min.js"></script>
+
+    <script src="plugins/shuffle/shuffle.min.js"></script>
+    <script src="plugins/counterup/jquery.counterup.min.js"></script>
+    <!-- Google Map -->
+    <script src="js/google-map-services.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+
+</body>
+
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+    $(function () {
+        var fileupload = $("#FileUpload");
+        var filePath = $("#spnFilePath");
+        var button = $("#btnFileUpload");
+        /var button1 = $("#btn1FileUpload");/
+        button.click(function () {
+            $('#fileuploaded').hide();
+            fileupload.click();
+        });
+        fileupload.change(function () {
+            var fileName = $(this).val().split('\\')[$(this).val().split('\\').length - 1];
+            filePath.html("<b>Selected File: </b>" + fileName);
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        
+        document.getElementById("userName").innerHTML = JSON.parse(localStorage.getItem('Jwt')).userName;
+        addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("save").click();
+        }
+        });
+        GetData();
+        $('#ifYes').hide();
+
+    });
+
+    function ifYes() {
+        $('#ifYes').show();
+    }
+
+    function ifNo() {
+        $('#ifYes').hide();
+    }
+
+    function GetData() {
+        $.ajax({
+            url: 'http://3.229.127.143:8095/users/getPatientProfile',
+            type: "GET",
+            headers: {
+                      'Content-Type': "application/json",
+                      'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    }, 
+            success: function (data) {
+                console.log(data);
+                $('#fname').val(data.firstName);
+                $('#lname').val(data.lastName);
+                $('#add1').val(data.address1);
+                $('#add2').val(data.address2);
+                $('#city').val(data.city);
+                $('#state').val(data.state);
+                $('#zip').val(data.zipcode);
+                $('#contact').val(data.phoneNumber);
+                $('#dob').val(data.dateOfBirth);
+                $('#email').val(data.email);
+                $('#inum').val(data.insuranceNum);
+                if (data.isPregnant) {
+                    $('#ifYes').show();
+                    $('#pregYes').prop("checked", "checked");
+                    $('#txtTri').val(data.trimester);
+                }
+                else {
+                    $('#pregNo').prop("checked", "checked");
+                }
+                if (data.sleepTraining) {
+                    $('#sleepTherapyID').prop("checked", "checked");
+                }
+                if (data.lactationConsultation) {
+                    $('#lactationID').prop("checked", "checked");
+                }
+                if (data.doulaMatch) {
+                    $('#doulaMatchID').prop("checked", "checked");
+                }
+                if (data.midwifeTherapy) {
+                    $('#midWifeMatchID').prop("checked", "checked");
+                }
+                if (data.pelvicFloorTherapy) {
+                    $('#pelvicFloorID').prop("checked", "checked");
+                }
+                if (data.depressionTherapy) {
+                    $('#postPartumID').prop("checked", "checked");
+                }
+                if (data.nutritionTherapy) {
+                    $('#nutritionID').prop("checked", "checked");
+                }
+                $('#fileuploaded').html("<a href=" + data.insuranceCard + " target='_blank'>" + data.insuranceFileName + "</a>");
+
+            },
+            error: function (error) {
+                alert(error.responseText);
+            }
+        });
+    }
+
+    function ValidateTri(e){
+        if($('#txtTri').val()>12){
+            alert("Trimester cannot be more than 12!");
+            return false
+        }
+    }
+
+    function Save() {
+        var isPregnant;
+        if ($('#pregNo').prop("checked")) {
+            isPregnant = false;
+        }
+        else if ($('#pregYes').prop("checked")) {
+            isPregnant = true;
+            if ($('#txtTri').val() == '') {
+                alert("Please enter Trimester");
+                return false;
+            }
+        }
+        let lat = "";
+        let long = "";
+    
+        if ($("#g-lat-long").val() != "") {
+          lat = $("#g-lat-long").val().split(",")[0];
+          long = $("#g-lat-long").val().split(",")[1];
+        }
+        console.log($('#dob').val());
+        var jsondata = JSON.stringify({
+            firstName: $('#fname').val(),
+            lastName: $('#lname').val(),
+            address1: $('#add1').val(),
+            address2: $('#add2').val(),
+            city: $('#city').val(),
+            state: $('#state').val(),
+            zipcode: $('#zip').val(),
+            phoneNumber: $('#contact').val(),
+            userType: 'Patient',
+            gender: $('#genderSelect').val(),
+            dateOfBirth: $('#dob').val(),
+            specialityId: $('#Specialization').val(),
+            email: $('#email').val(),
+            insuranceNum: $('#inum').val(),
+            insurancePlan: null,
+            isPregnant: isPregnant,
+            trimester: $('#txtTri').val(),
+            sleepTraining: $('#sleepTherapyID').prop("checked"),
+            lactationConsultation: $('#lactationID').prop("checked"),
+            doulaMatch: $('#doulaMatchID').prop("checked"),
+            midwifeTherapy: $('#midWifeMatchID').prop("checked"),
+            pelvicFloorTherapy: $('#pelvicFloorID').prop("checked"),
+            depressionTherapy: $('#postPartumID').prop("checked"),
+            nutritionTherapy: $('#nutritionID').prop("checked"),
+            latitude: lat,
+      longitude: long,
+        });
+
+        var data = new FormData();
+        data.append('jsondata', jsondata);
+        data.append('license', null);
+        data.append('certificate', null);
+        
+
+        data.append('insurancecard', $('#FileUpload')[0].files[0]),
+
+
+            $.ajax({
+                url: 'http://3.229.127.143:8095/users/editProfile/',
+                type: "PUT",
+                headers: {
+                      'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    }, 
+                data: data,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(() => { window.location.href = "Users_Upcoming_Appointments.html" ; }, 1000);
+                },
+                error: function (error) {
+                    var x = document.getElementById("failure");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+
+                }
+            });
+    }
+    function logout(){
+         localStorage.removeItem('Jwt'); 
+	    }
+</script>
+
+<footer class="footer section gray-bg" style="padding: 2%;">
+    <div class="row">
+        <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+    </div>
+</footer>

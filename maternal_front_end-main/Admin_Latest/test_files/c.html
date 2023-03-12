@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  ================================================== -->
+  <!-- <meta charset="utf-8"> -->
+  <title>Camo Health - Admin</title>
+
+  <!-- Mobile Specific Metas
+  ================================================== -->
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/dt-1.10.11,r-2.0.2/datatables.min.css">
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+    <!-- Themefisher Icon font -->
+    <link rel="stylesheet" href="plugins/themefisher-font/style.css">
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+    
+    <!-- Animate css -->
+    <link rel="stylesheet" href="plugins/animate/animate.css">
+    <!-- Slick Carousel -->
+    <link rel="stylesheet" href="plugins/slick/slick.css">
+    <link rel="stylesheet" href="plugins/slick/slick-theme.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+ 
+</head>
+
+<body id="body">
+
+<!-- Start Top Header Bar -->
+<section class="top-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-xs-12 col-sm-4">
+				<!-- <div class="contact-number">
+					<i class="tf-ion-ios-telephone"></i>
+					<span>0129- 12323-123123</span>
+				</div> -->
+			</div>
+			<div class="col-md-4 col-xs-12 col-sm-4">
+				<!-- Site Logo -->
+				<div class="logo text-center">
+					<a href="index.html">
+						<!-- replace logo here -->
+						<svg width="335px" height="29px" viewBox="0 0 155 29" version="1.1" xmlns="http://www.w3.org/2000/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink">
+							<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-size="40"
+								font-family="AustinBold, Austin" font-weight="bold">
+								<g id="Group" transform="translate(-108.000000, -297.000000)" fill="#000000">
+									<text id="AVIATO">
+										<tspan x="108.94" y="325">Camo Health</tspan>
+									</text>
+								</g>
+							</g>
+						</svg>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section><!-- End Top Header Bar -->
+
+
+<!-- Main Menu Section -->
+<section class="menu">
+	<nav class="navbar navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<h2 class="menu-title">Main Menu</h2>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+					aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+
+			</div><!-- / .navbar-header -->
+
+			<!-- Navbar Links -->
+			<div id="navbar" class="navbar-collapse collapse text-center">
+				<ul class="nav navbar-nav">
+
+					<!-- Home -->
+					<li class="dropdown ">
+						<a href="index.html">Complaints</a>
+					</li><!-- / Home -->
+
+					<li class="dropdown ">
+						<a href="index.html">Patient Details</a>
+					</li>
+					<li class="dropdown ">
+						<a href="index.html">Practitioner Details</a>
+					</li>
+					<li class="dropdown ">
+						<a href="index.html">Videos</a>
+					</li>
+					<li class="dropdown ">
+						<a href="index.html">Appointments</a>
+					</li>
+					
+		</div>
+	</nav>
+</section>
+
+<!-- <section class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2">
+				<div class="content">
+					<h1 class="page-name">Complaints</h1> -->
+					<!-- <ol class="breadcrumb">
+						<li><a href="index.html">Home</a></li>
+						<li class="active">my account</li>
+					</ol> -->
+				<!-- </div>
+			</div>
+		</div>
+	</div>
+</section> -->
+<style>
+    th{ 
+        color:#fff;
+            }
+</style>
+<div class="container ">
+    <!-- Table structure here -->
+    <table class="table table-striped">
+        <!-- <thead> -->
+            <tr class= "bg-info">
+                <th><center>Practitioner Name</center></th>
+                <th><center>Speciality</center></th>
+                <th><center>Format</center></th>
+                <th><center>Date & Time</center></th>
+                <!-- <th>Zipcode</th> -->
+                <th><center>Action</center></th>
+            </tr>
+        <!-- </thead> -->
+        <tbody id="table-body">
+
+        </tbody>
+    </table>
+</div>
+
+<div class="container ">
+    <div id="pagination-wrapper"></div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script>
+    var tableData = [
+    {'name':'Alan', 'age':'Sleep Therapy', 'format':'Online', 'date':'11-27-2022 14:20:00' },
+    {'name':'Abhi', 'age':'Sleep Therapy', 'format':'Online', 'date':'11-27-2022 14:20:00' },
+    {'name':'Paul', 'age':'Sleep Therapy', 'format':'Online', 'date':'11-27-2022 14:20:00' },
+    {'name':'Dennis','age':'Sleep Therapy', 'format':'Online', 'date':'11-27-2022 14:20:00'},
+    {'name':'Tim', 'age':'Sleep Therapy', 'format':'Online', 'date':'11-27-2022 14:20:00'},
+    {'name':'Erik', 'age':'Sleep Therapy', 'format':'Online', 'date':'11-27-2022 14:20:00'},
+    {'name':'Tim', 'age':'Sleep Therapy', 'format':'Online', 'date':'11-27-2022 14:20:00'},
+    {'name':'Erik', 'age':'Sleep Therapy', 'format':'Online', 'date':'11-27-2022 14:20:00'},
+]
+
+
+/*
+	1 - Loop Through Array & Access each value
+  2 - Create Table Rows & append to table
+*/
+
+
+var state = {
+    'querySet': tableData,
+
+    'page': 1,
+    'rows': 5,
+    'window': 5,
+}
+
+buildTable()
+
+function pagination(querySet, page, rows) {
+
+    var trimStart = (page - 1) * rows
+    var trimEnd = trimStart + rows
+
+    var trimmedData = querySet.slice(trimStart, trimEnd)
+
+    var pages = Math.round(querySet.length / rows);
+
+    return {
+        'querySet': trimmedData,
+        'pages': pages,
+    }
+}
+
+function pageButtons(pages) {
+    var wrapper = document.getElementById('pagination-wrapper')
+
+    wrapper.innerHTML = ``
+	console.log('Pages:', pages)
+
+    var maxLeft = (state.page - Math.floor(state.window / 2))
+    var maxRight = (state.page + Math.floor(state.window / 2))
+
+    if (maxLeft < 1) {
+        maxLeft = 1
+        maxRight = state.window
+    }
+
+    if (maxRight > pages) {
+        maxLeft = pages - (state.window - 1)
+        
+        if (maxLeft < 1){
+        	maxLeft = 1
+        }
+        maxRight = pages
+    }
+    
+    
+
+    for (var page = maxLeft; page <= maxRight; page++) {
+    	wrapper.innerHTML += `<button value=${page} class="page btn btn-sm btn-info">${page}</button>`
+    }
+
+    if (state.page != 1) {
+        wrapper.innerHTML = `<button value=${1} class="page btn btn-sm btn-info">&#171; First</button>` + wrapper.innerHTML
+    }
+
+    if (state.page != pages) {
+        wrapper.innerHTML += `<button value=${pages} class="page btn btn-sm btn-info">Last &#187;</button>`
+    }
+
+    $('.page').on('click', function() {
+        $('#table-body').empty()
+
+        state.page = Number($(this).val())
+
+        buildTable()
+    })
+
+}
+
+
+function buildTable() {
+    var table = $('#table-body')
+
+    var data = pagination(state.querySet, state.page, state.rows)
+    var myList = data.querySet
+
+    for (var i = 1 in myList) {
+        //Keep in mind we are using "Template Litterals to create rows"
+        var row = `<tr>
+                  <td><center>${myList[i].name}</center></td>
+                  <td><center>${myList[i].age}</center></td>
+                  <td><center>${myList[i].format}</center></td>
+                  <td><center>${myList[i].date}</center></td>
+                  <td><center><a href="appoinment.html" target="_blank">Schedule</a></center> </td>
+        </tr>`
+        table.append(row)
+    }
+
+    pageButtons(data.pages)
+}
+
+</script>
+
+
+
+
+
+
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+    
+    <!-- Main jQuery -->
+    <!-- <script src="plugins/jquery/dist/jquery.min.js"></script> -->
+    <!-- Bootstrap 3.1 -->
+    <!-- <script src="plugins/bootstrap/js/bootstrap.min.js"></script> -->
+    <!-- Bootstrap Touchpin -->
+    <!-- <script src="plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script> -->
+    <!-- Instagram Feed Js -->
+    <!-- <script src="plugins/instafeed/instafeed.min.js"></script> -->
+    <!-- Video Lightbox Plugin -->
+    <!-- <script src="plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script> -->
+    <!-- Count Down Js -->
+    <!-- <script src="plugins/syo-timer/build/jquery.syotimer.min.js"></script> -->
+
+    <!-- slick Carousel -->
+    <!-- <script src="plugins/slick/slick.min.js"></script>
+    <script src="plugins/slick/slick-animation.min.js"></script> -->
+
+    <!-- Google Mapl -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+    <script type="text/javascript" src="plugins/google-map/gmap.js"></script> -->
+
+    <!-- Main Js File -->
+    <!-- <script src="js/script.js"></script> -->
+  
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.0.js"></script>  
+    <script src="https://cdn.datatables.net/t/bs-3.3.6/dt-1.10.11,r-2.0.2/datatables.min.js"></script> -->
+
+  </body>
+  </html>

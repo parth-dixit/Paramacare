@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  <title>Parama Care</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <!-- Icon Font Css -->
+  <link rel="stylesheet" href="plugins/icofont/icofont.min.css">
+  <!-- Slick Slider  CSS -->
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body id="top">
+
+  <header>
+    <nav class="navbar navbar-expand-lg navigation" id="navbar" style="background: aliceblue;">
+        <div class="container" style="display: contents;margin: 0%;">
+          <a class="navbar-brand" href="Admin_Complaints_Open.html">
+            <img src="images/camohealth.png" alt="" class="img-fluid">
+        </a>
+              <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icofont-navigation-menu"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarmain">
+            <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="Admin_Complaints_Open.html" >Complaints</a></li>
+                <li class="nav-item"><a class="nav-link" href="Admin_Patient_Details.html" >Patient</a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle"  id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: blue;">Practitioner <i class="icofont-thin-down"></i></a>
+        <ul class="dropdown-menu" aria-labelledby="dropdown02">
+          <li><a class="dropdown-item" href="Admin_Practitioner_Requests.html" style="color: blue;">Practitioner Requests</a></li>
+          <li><a class="dropdown-item" href="Admin_Practitioner_Details.html" >Practitioner Details</a></li>
+        </ul>
+        </li>
+                <li class="nav-item"><a class="nav-link" href="Admin_Video_Upload.html" >Videos</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="logout()" href="Admin_index.html">Logout</a></li>
+      <li class="nav-item"><a class="nav-link" >Welcome <span id="userName"></a></li>  
+            </ul>
+          </div>
+        </div>
+    </nav>
+</header>
+      <div style= "margin-left:27%; padding-top: 5%;"><a class="btn btn-main btn-round-full" onclick="history.back()" style="color: white;">Back</a></div> 
+      <section class="section appoinment" style="padding-top: 3%;margin-right: 40%;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class=" col-md-9 "style="margin-left:55%">
+                    <div class="appoinment-wrap mt-7 mt-lg-0">
+                        <h2 class="mb-2 title-color" style="margin-left:13%">Practitioner Details</h2>
+               <form id="#" class="appoinment-form" method="post" action="#" style="margin-left:15%" >
+                <div class="row">
+                    <div class="col-lg-4"  >
+                        <div class="form-group">
+                            Name:
+                        </div>
+                    </div> 
+                    <div class="col-lg-6">
+                        <div class="form-group" id="firstName">
+                        </div>
+                    </div>
+                  
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                Email address:
+                            </div>
+                        </div> 
+                         <div class="col-lg-6">
+                            <div class="form-group" id="email">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                              Specialization:
+                          </div>
+                      </div> 
+                       <div class="col-lg-6">
+                          <div class="form-group" id="Specialization">
+                          
+                          </div>
+                      </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                License:
+                            </div>
+                        </div> 
+                         <div class="col-lg-6">
+                            <div class="form-group" id="license">
+                           <a href="#"></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                Address:
+                            </div>
+                        </div> 
+                         <div class="col-lg-6">
+                            <div class="form-group" id="address1">
+                            </div>
+                        </div>
+                      <div class="col-lg-4">
+                          <div class="form-group">
+                              City
+                          </div>
+                      </div> 
+                         <div class="col-lg-6">
+                            <div class="form-group" id="city">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                Zip Code:
+                            </div>
+                        </div> 
+                         <div class="col-lg-6">
+                            <div class="form-group" id="zipcode">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                Phone number:
+                            </div>
+                        </div> 
+                         <div class="col-lg-6">
+                            <div class="form-group" id="number">
+                            </div>
+                        </div>
+
+                    <div style="margin-left:2%;text-align-last:center; padding-top: 5%;"><a class="btn btn-main btn-round-full" onclick="showapprove()" style="color: white;">Approve</a></div>
+                  
+                    <div style="margin-left:5%;text-align-last:center; padding-top: 5%;"  id="requestInfo"><a class="btn btn-main btn-round-full" target="popup" onclick="requestInfo()" style="color: white;">RequestInfo</a></div>
+                    <div style="margin-left:5%;text-align-last:center; padding-top: 5%;" id="reject"><a class="btn btn-main btn-round-full" target="popup" onclick="reject()"style="color: white;">Reject</a></div>
+                   
+                    <div style="margin-left:3%;text-align-last:center; padding-top: 5%;" id="approve"></div>
+
+                    <div id="snackbar">Email has been sent!</div>
+                    <div id="failure">Please try again later!</div>
+                </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div style="padding-top: 1%; display:none;" class="pracshow">
+    <h2 class="mb-2 title-color" style="margin-left:38%">Practitioner Approved!</h2>
+
+</div>
+    
+    
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/jquery.js"></script>
+    <!-- Bootstrap 4.3.2 -->
+    <script src="plugins/bootstrap/js/popper.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/counterup/jquery.easing.js"></script>
+    <!-- Slick Slider -->
+    <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+    <!-- Counterup -->
+    <script src="plugins/counterup/jquery.waypoints.min.js"></script>
+    
+    <script src="plugins/shuffle/shuffle.min.js"></script>
+    <script src="plugins/counterup/jquery.counterup.min.js"></script>
+    
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+
+  </body>
+  </html>
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  <script>
+
+    $(document).ready(function(){
+      document.getElementById("userName").innerHTML = JSON.parse(localStorage.getItem('Jwt')).userName;
+  const id = new URLSearchParams(window.location.search).get('user')
+  const local_data = JSON.parse(localStorage.getItem('data'))
+  const current_user = local_data.find(el => {
+  if(el.id == id){
+   return el
+   }    
+   })
+
+   $.ajax({
+           url: 'http://3.229.127.143:8095/users/getPractitionerSpeciality/'+id,
+           type: "GET",
+           headers: {
+                     'Content-Type': "application/json",
+                     'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    }, 
+
+        success: function (data) {
+            var Speciality=""
+            data.forEach(element => {
+                if(element==1){
+                    Speciality=Speciality+"Sleep Training, "
+                }
+                else if(element == 2){
+                    Speciality=Speciality+"Lactation Consultation, "
+                }
+                else if(element == 3){
+                    Speciality=Speciality+"Doula Match, "
+                }
+                else if(element == 4){
+                    Speciality=Speciality+"Midwife Therapy, "
+                }
+                else if(element == 5){
+                    Speciality=Speciality+"Pelvic Floor Therapy, "
+                }
+                else if(element == 6){
+                    Speciality=Speciality+"Postpartum Depression Therapy, "
+                }
+                else if(element == 7){
+                    Speciality=Speciality+"Nutritional Training, "
+                }
+            });
+            document.getElementById('Specialization').innerHTML = Speciality
+           },
+           error: function (error) {
+               console.log(error);
+               document.getElementById('Specialization').innerText = "No Specializaion Updated"
+           }
+       })
+      
+   document.getElementById('firstName').innerText = current_user.firstName
+   document.getElementById('email').innerText = current_user.email
+   document.getElementById('address1').innerText = current_user.address1
+  
+   document.getElementById('city').innerText = current_user.city
+   document.getElementById('zipcode').innerText = current_user.zipcode
+   document.getElementById('number').innerText = current_user.phoneNumber
+   document.getElementById('license').innerHTML = `<a href="${current_user.license}" target="_blank">${current_user.licenseFileName}</a>`
+   function logout(){
+         localStorage.removeItem('Jwt'); 
+	}
+     
+})
+
+
+function reject(){
+  const id = new URLSearchParams(window.location.search).get('user')
+  const local_data = JSON.parse(localStorage.getItem('data'))
+  const current_user = local_data.find(el => {
+  if(el.id == id){
+   return el
+   }    
+   })
+    var email=current_user.email;
+    console.log(email);
+    window.location.href = "Admin_Request_Reject.html?user="+email
+	}
+  function requestInfo(){
+  const id = new URLSearchParams(window.location.search).get('user')
+  const local_data = JSON.parse(localStorage.getItem('data'))
+  const current_user = local_data.find(el => {
+  if(el.id == id){
+   return el
+   }    
+   })
+    var email=current_user.email;
+    console.log(email);
+    window.location.href = "Admin_Request_More_Details.html?user="+email
+	}
+
+function showapprove(){
+  const id = new URLSearchParams(window.location.search).get('user')
+  const local_data = JSON.parse(localStorage.getItem('data'))
+  const current_user = local_data.find(el => {
+  if(el.id == id){
+   return el
+   }    
+   })
+    var email=current_user.email;
+    console.log(email);
+$.ajax({
+  
+  url: 'http://3.229.127.143:8095/users/approvePractitionerRequest/'+email,
+  type: "GET",
+  headers: {
+                      'Content-Type': "application/json",
+                      'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    }, 
+
+
+  success: function (data) {
+    var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        setTimeout(() => {   window.location.href = "Admin_Practitioner_Requests.html"; }, 1000);
+       
+
+  },
+  error: function (error) {
+    var x = document.getElementById("failure");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
+});
+	}
+
+  function logout(){
+         localStorage.removeItem('Jwt'); 
+	    }
+</script>
+
+<footer class="footer section gray-bg" style="padding: 2%;">
+    <div class="row">
+        <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+    </div>
+</footer>

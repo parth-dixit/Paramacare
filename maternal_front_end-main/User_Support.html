@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+
+    <title>Parama Care</title>
+
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+
+    <!-- jQuery library file -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <!-- Datatable plugin JS library file -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js">
+    </script>
+
+</head>
+
+<body id="top">
+
+    <header>
+        <nav class="navbar navbar-expand-lg navigation" id="navbar" style="background: aliceblue;">
+            <div class="container" style="display: contents;margin: 0%;">
+
+                  <a class="navbar-brand" href="Schedule_Appointment.html">
+                      <img src="images/camohealth.png" alt="" class="img-fluid">
+                  </a>
+    
+                  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="icofont-navigation-menu"></span>
+              </button>
+          
+              <div class="collapse navbar-collapse" id="navbarmain">
+                <ul class="navbar-nav ml-auto">
+
+				    <li class="nav-item"><a class="nav-link" href="EditUser.html">Profile</a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Appointments <i class="icofont-thin-down"></i></a>
+						<ul class="dropdown-menu" aria-labelledby="dropdown02">
+							<li><a class="dropdown-item" href="Users_Upcoming_Appointments.html">Upcoming Appointments</a></li>
+							<li><a class="dropdown-item" href="Users_Appointment_History.html">Appointment History</a></li>
+						</ul>
+					  </li>
+
+           <li class="nav-item"><a class="nav-link" href="UserSupportList.html" style="color: blue;">Support</a></li>
+					<li class="nav-item"><a class="nav-link" href="EducationHub_User.html">Resources</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="logout()" href="Login_Users.html">Logout</a></li>
+          <li class="nav-item"><a class="nav-link" >Welcome <span id="userName"></span></a></li>
+          <div class="btn-container ">
+            <a href="Schedule_Appointment.html" class="btn btn-main-2 btn-icon btn-round-full" style = "margin-top: 2.5%;" >Schedule Appoinment </a>
+          </div>
+                </ul>
+              </div>
+
+            </div>
+        </nav>
+    </header>
+    <section>
+        <div class="row">
+            <div class="col-md-12">
+
+              
+            </div>
+          </div>
+        </div>
+      </section> 
+
+      <section class="section appoinment" style="padding-top: 0.5%;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 ">
+                  <div id="snackbar">Complaint has been added</div>
+                                <div id="failure">Complaint could not be added, please try again later</div>
+                    <div class="appoinment-content">
+                        <img src="images/about/l1.png" alt="" class="img-fluid">
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-10 ">
+                    <div class="appoinment-wrap mt-5 mt-lg-0">
+                        <h2 class="mb-2 title-color">Support</h2>
+               <form id="#" class="appoinment-form" method="post" action="#">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            Practitioner:
+                        </div>
+                    </div> 
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                          <label id="lblPractitioner"><span style="color: red;"><i>Please Select Practitioner</i></span></label>
+
+                            <select class="form-control" id="Practitioner">
+                              <option>Select Practitioner</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                          Select Appoinment:
+                      </div>
+                  </div> 
+                  <div class="col-lg-6">
+                      <div class="form-group">
+                        <label id="lblAppointment"><span style="color: red;"><i>Please Select appointment</i></span></label>
+
+                          <select class="form-control" id="ddlAppointment">
+                            <option>Select Appointment</option>
+                          </select>
+                      </div>
+                  </div>
+                  
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                Summary:
+                            </div>
+                        </div> 
+                         <div class="col-lg-6">
+                            <div class="form-group">
+                                <input name="txtSummary" id="txtSummary" type="text" class="form-control" placeholder="Summary">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                Description:
+                            </div>
+                        </div> 
+                    <div class="col-lg-6">
+                        <textarea name="txtDescription" id="txtDescription" class="form-control" rows="6" placeholder="Issue"></textarea>
+                    </div>
+
+                    <div style="text-align-last: center; padding-top: 5%;width: 100%;"><a class="btn btn-main btn-round-full" onclick="Save()" style="color: white;">Submit</a></div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+
+    <div style="margin-right: 5%;margin-left: 5%;margin-top: 5%;">
+        <table id="example">
+
+        </table>
+    </div>
+
+  </div>
+</section>
+
+   
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+    
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/jquery.js"></script>
+    <!-- Bootstrap 4.3.2 -->
+    <script src="plugins/bootstrap/js/popper.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/counterup/jquery.easing.js"></script>
+    <!-- Slick Slider -->
+    <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+    <!-- Counterup -->
+    <script src="plugins/counterup/jquery.waypoints.min.js"></script>
+    
+    <script src="plugins/shuffle/shuffle.min.js"></script>
+    <script src="plugins/counterup/jquery.counterup.min.js"></script>
+    <!-- Google Map -->
+   
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+
+  </body>
+  </html>
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  <script>
+	  $(document).ready(function () {
+      
+        document.getElementById("userName").innerHTML = JSON.parse(localStorage.getItem('Jwt')).userName;
+ 
+		  $('#lblPractitioner').hide();
+      $('#lblAppointment').hide()
+		  $('#lblPassword').hide();
+      $.ajax({
+        url: "http://3.229.127.143:8095/api/step3/getPractitioner",
+        type: 'GET',
+        headers: {
+                      'Content-Type': "application/json",
+                      'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    }, 
+        dataType: 'json', 
+        success: function(res) {
+            console.log(res);
+            var mySelect = $('#Practitioner');
+            for(var i=0;i<res.length;i++) {
+              mySelect.append(
+                    $('<option></option>').val(res[i].id).html(res[i].firstName)
+                );
+            }
+        },
+        error:function (error) {
+	      alert(error.responseText);
+  }
+    });
+		});
+
+  $("#Practitioner").change(function() {
+    GetAppointment();
+  });
+
+function GetAppointment(){
+  $.ajax({
+        url: "http://3.229.127.143:8095/getAllAppointmentsByPractitionerId/" + $('#Practitioner').val(),
+        type: 'GET',
+        headers: {
+                      'Content-Type': "application/json",
+                      'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    }, 
+        dataType: 'json', 
+        success: function(res) {
+            console.log(res);
+            $('#ddlAppointment option').remove();
+            var mySelect = $('#ddlAppointment');
+            for(var i=0;i<res.length;i++) {
+              mySelect.append(
+                    $('<option></option>').val(res[i].appointmentId).html(res[i].first_name + "-" + res[i].timeSlot.substring(0,3) + "-" + res[i].timeSlot.substring(4,14))
+                );
+            }
+        },
+        error:function (error) {
+	      alert(error.responseText);
+  }
+    });
+}
+	function Login(){
+		var count = 0;
+		if ($('#Practitioner').val() == '') {
+			$('#lblPractitioner').show();
+			count++;
+		}
+		else{
+			$('#lblPractitioner').hide();
+		}
+    if(count > 0){
+			return false;
+		}
+  }
+  </script>
+
+  <script>
+	function Save(){
+$.ajax({
+  url: 'http://3.229.127.143:8095/api/step3/addcomplaint',
+  type: "POST",
+  headers: {
+                      'Content-Type': "application/json",
+                      'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    },
+  data: JSON.stringify({
+	  description: $('#txtDescription').val(),
+    summary: $('#txtSummary').val(),
+    practitioner_id: $('#Practitioner').val(),
+    appointment_id: $('#ddlAppointment').val(),
+    status: "New"
+  }),
+  dataType: "text",
+  success: function (data) {
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(() => { window.location.href = "UserSupportList.html" ; }, 1000);
+  },
+  error: function (error) {
+    var x = document.getElementById("failure");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(() => { window.location.href = "UserSupportList.html" ; }, 1000);
+  }
+});
+
+
+}
+function logout(){
+         localStorage.removeItem('Jwt');}
+</script>
+
+<footer class="footer section gray-bg" style="padding: 2%;">
+  <div class="row">
+      <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+  </div>
+</footer>

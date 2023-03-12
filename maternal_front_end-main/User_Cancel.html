@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+
+    <title>Parama Care</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Icon Font Css -->
+    <link rel="stylesheet" href="plugins/icofont/icofont.min.css">
+    <!-- Slick Slider  CSS -->
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body id="top">
+
+    <header>
+        <nav class="navbar navbar-expand-lg navigation" id="navbar" style="background: aliceblue;">
+            <div class="container" style="display: contents;margin: 0%;">
+                <a class="navbar-brand" href="Schedule_Appointment.html">
+                    <img src="images/camohealth.png" alt="" class="img-fluid">
+                </a>
+
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain"
+                    aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icofont-navigation-menu"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarmain">
+                    <ul class="navbar-nav ml-auto">
+
+                        <li class="nav-item"><a class="nav-link" href="EditUser.html">Profile</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="department.html" id="dropdown02"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                style="color: blue;">Appointments <i class="icofont-thin-down"></i></a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                                <li><a class="dropdown-item" href="Users_Upcoming_Appointments.html">Upcoming Appointments</a>
+                                </li>
+                                <li><a class="dropdown-item" href="Users_Appointment_History.html">Appointment History</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="UserSupportList.html">Support</a></li>
+                        <li class="nav-item"><a class="nav-link" href="EducationHub_User.html">Resources</a></li>
+                        <li class="nav-item"><a class="nav-link" onclick="logout()" href="Login_Users.html">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" >Welcome <span id="userName"></span></a></li>
+                        <div class="btn-container ">
+                            <a href="Schedule_Appointment.html" class="btn btn-main-2 btn-icon btn-round-full"
+                                style="margin-top: 2.5%;">Schedule Appoinment </a>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="snackbar">Your Appointment has been cancelled</div>
+                                <div id="failure">Your appointment could not be cancelled, please try again later</div>
+    <section id="main" style="margin: 1%;" class="form-group">
+        <div style="text-align-last: center;margin-left: 2%;">
+            <h3>Cancellation Request!</h3>
+            <hr>
+        </div>
+        <div style="text-align-last: center;">
+ 
+            <label id="txtData"></label>
+        </div>
+
+        <div style="display: inline-flex;padding-left: 33%;">
+            <div style="margin-right: 2%;">
+                <label>
+                    <b>Reason:</b>
+                </label>
+            </div>
+            <textarea type="textarea" id="txtReason" cols="50" rows="5"></textarea>
+        </div>
+        <br><br>
+        
+        <div style="margin: 2%;text-align-last: center;">
+            <button class="btn btn-main-2 btn-icon btn-round-full" onclick="Save()" style="width: 10%;" type="submit">Save</button>
+            <a class="btn btn-round-full" onclick="Cancel()" style="color: white; background: grey;">Cancel</a>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/jquery.js"></script>
+    <!-- Bootstrap 4.3.2 -->
+    <script src="plugins/bootstrap/js/popper.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/counterup/jquery.easing.js"></script>
+    <!-- Slick Slider -->
+    <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+    <!-- Counterup -->
+    <script src="plugins/counterup/jquery.waypoints.min.js"></script>
+
+    <script src="plugins/shuffle/shuffle.min.js"></script>
+    <script src="plugins/counterup/jquery.counterup.min.js"></script>
+    <!-- Google Map -->
+    <script src="plugins/google-map/map.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
+
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+
+</body>
+
+</html>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+       
+        document.getElementById("userName").innerHTML = JSON.parse(localStorage.getItem('Jwt')).userName;
+
+      var id = new URLSearchParams(window.location.search).get('appointmentId');
+        GetData(id);
+    });
+
+    function Cancel() {
+        window.location.href = "Users_Upcoming_Appointments.html";
+    }
+
+    function GetData(id) {
+        $.ajax({
+            url: 'http://3.229.127.143:8095/getAppointmentById/' + parseInt(id),
+            type: "GET",
+            headers: {
+                      'Content-Type': "application/json",
+                      'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    }, 
+            success: function (data) {
+                console.log(data);
+                $('#txtData').html("<b>Are you sure you want to cancel your appointment with - <u>" + data.practitionerName + "</u> on <u>" + data.timeSlot.substring(0, 10) + 
+                     " at " + data.timeSlot.substring(11) + "</u> for <u>" + data.speciality + "</u>.</b>");
+            },
+            error: function (error) {
+                console.log(data);
+            }
+        });
+    }
+
+    function Save() {
+      var id = new URLSearchParams(window.location.search).get('appointmentId');
+        $.ajax({
+            url: 'http://3.229.127.143:8095/cancelAppointmentStatus/' + parseInt(id),
+            type: "PUT",
+            headers: {
+                      'Content-Type': "application/json",
+                      'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    }, 
+            data: JSON.stringify({
+                cancelReason: $('#txtReason').val(),
+            }),
+            dataType: "text",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+               
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(() => { window.location.href = "Users_Upcoming_Appointments.html" ; }, 1000);    
+            },
+            error: function (error) {
+                var x = document.getElementById("failure");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+            }
+        });
+    }
+
+    function logout(){
+         localStorage.removeItem('Jwt'); 
+	    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+
+
+    <footer class="footer section gray-bg" style="padding: 2%;">
+        <div class="row">
+            <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+        </div>
+    </footer>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Parama Care</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <!-- Icon Font Css -->
+    <link rel="stylesheet" href="plugins/icofont/icofont.min.css" />
+    <!-- Slick Slider  CSS -->
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css" />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/scheduler-calendar.css" />
+</head>
+
+<body id="top">
+    <header>
+        <nav class="navbar navbar-expand-lg navigation" id="navbar" style="background: aliceblue;">
+          <div class="container" style="display: contents;margin: 0%;">
+              <a class="navbar-brand" href="Schedule_Appointment.html">
+                  <img src="images/camohealth.png" alt="" class="img-fluid">
+              </a>
+    
+              <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain"
+                  aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="icofont-navigation-menu"></span>
+              </button>
+    
+              <div class="collapse navbar-collapse" id="navbarmain">
+                  <ul class="navbar-nav ml-auto">
+                      <li class="nav-item"><a class="nav-link" href="EditUser.html">Profile</a></li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="department.html" id="dropdown02"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: blue;">Appointments <i
+                                  class="icofont-thin-down"></i></a>
+                          <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                              <li><a class="dropdown-item" href="Users_Upcoming_Appointments.html" style="color: blue;">Upcoming
+                                      Appointments</a></li>
+                              <li><a class="dropdown-item" href="Users_Appointment_History.html">Appointment
+                                      History</a></li>
+                          </ul>
+                      </li>
+                      <li class="nav-item"><a class="nav-link" href="UserSupportList.html">Support</a>
+                      </li>
+                      <li class="nav-item"><a class="nav-link" href="EducationHub_User.html">Resources</a></li>
+    
+                      <li class="nav-item"><a class="nav-link" onclick="logout()" href="Login_Users.html">Logout</a></li>
+                      <div class="btn-container ">
+                          <a href="Schedule_Appointment.html" class="btn btn-main-2 btn-icon btn-round-full"
+                              style="margin-top: 2.5%;">Schedule Appoinment </a>
+                      </div>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+    </header>
+    <section class="page-title bg-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block text-center">
+                        <span class="text-black">Select your Appoinment</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="container">
+        <div id="appointment-scheduler"></div>
+    </div>
+    <!--
+Essential Scripts
+=====================================-->
+
+    <!-- Bootstrap 4.3.2 -->
+    <script src="plugins/bootstrap/js/popper.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/scheduler/scheduler-calendar-base.js"></script>
+    <script src="js/scheduler/scheduler-calendar-patient.js"></script>
+    <script>
+        let dummyJson = { "isDeleted": false, 
+                        "selectedDate": ["tue|2022-05-03|8", "tue|2022-05-03|19", "wed|2022-05-04|19", "wed|2022-05-04|7", "fri|2022-05-06|19", "fri|2022-05-06|9", "sat|2022-05-07|9", "sat|2022-05-07|10", "sat|2022-05-07|11", "sat|2022-05-07|12","sat|2022-05-07|13","sat|2022-05-07|14"], 
+                        "dateOfAvailability": null, "availabilityId": 34, "Appointment": ["tue|2022-05-07|12"],
+                        "createdAt": null, "modifiedBy": null, "modifiedAt": null, "createdBy": "67", "practitionerId": 102, "timeId": 0 }
+        $("#appointment-scheduler").patientBookingCalendar({
+            onNewAppointmentCheck: () => {
+                let practitionerId = getQueryParam("practitionerId");
+                let speciality = getQueryParam("speciality");
+
+                return false;
+            },
+
+            // load available time slots
+            onLoadSlots: () => {
+            let practitionerId = getQueryParam("practitionerId");
+            let speciality = getQueryParam("speciality");
+            return $.ajax({
+                url: "http://3.229.127.143:8095/availability/highlightavailability/"+practitionerId,
+                type: "GET",
+                headers: {
+                     'Content-Type': "application/json",
+                     'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    },
+                dataType: "json",
+                contentType: "application/json",
+            });
+            console.log(json);
+        },
+
+            // on appointment time submit
+            onSubmit: (json, isVirtual) => {
+                let practitionerId = getQueryParam("practitionerId");
+                let speciality = getQueryParam("speciality");
+                let day = json.day;
+                let time = json.time;
+                let date = json.date;
+                let slot = dayTimeString(day,date,time);
+
+                let url = `http://3.229.127.143:8095/api/v1/zoom/token/${practitionerId}/${speciality}/${slot}`                // if not new appointment
+                if (!isVirtual) {
+                url = `http://3.229.127.143:8095/inPerson/${speciality}/${practitionerId}/${slot}`;
+            }
+
+            return $.ajax({
+                url: url,
+                type: "POST",
+                headers: {
+                     'Content-Type': "application/json",
+                     'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    },
+                data: JSON.stringify(json),
+                dataType: "text",
+                contentType: "application/json",
+            });
+        },
+
+           // on handling error
+        onError: (error,isVirtual) => {
+            console.error("step 181"+isVirtual);
+            console.log("Hello js");
+           if(isVirtual)
+           window.location.href = "https://api.zoom.us/oauth/authorize?response_type=code&client_id=72Ab8ZZYQ0qMRiuDfNo_bA&redirect_uri=http%3A%2F%2F3.229.127.143%3A8095%2Fapi%2Fv1%2Fredirect"
+           else if(!isVirtual)
+            window.location.href = "Users_Upcoming_Appointments.html"
+        },
+
+        // on successfull submit
+        onSuccess: (data,isVirtual) => {
+            console.log("onSuccess", data);
+            console.log("step 187"+data);
+            if(isVirtual)
+            window.location.href = "https://api.zoom.us/oauth/authorize?response_type=code&client_id=72Ab8ZZYQ0qMRiuDfNo_bA&redirect_uri=http%3A%2F%2F3.229.127.143%3A8095%2Fapi%2Fv1%2Fredirect"
+             else if(!isVirtual)
+             window.location.href = "Users_Upcoming_Appointments.html"
+        },
+    });
+    function logout(){
+         localStorage.removeItem('Jwt'); 
+	    }
+</script>
+</body>
+</html>
+
+<footer class="footer section gray-bg" style="padding: 2%;">
+    <div class="row">
+        <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+    </div>
+</footer>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <title>Parama Care</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Icon Font Css -->
+    <link rel="stylesheet" href="plugins/icofont/icofont.min.css" />
+    <!-- Slick Slider  CSS -->
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css" />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/scheduler-calendar.css" />
+  </head>
+
+  <body id="top">
+    <header>
+      <nav class="navbar navbar-expand-lg navigation" id="navbar" style="background: aliceblue">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/camohealth.png" alt="" class="img-fluid" />
+          </a>
+
+          <button
+            class="navbar-toggler collapsed"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarmain"
+            aria-controls="navbarmain"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="icofont-navigation-menu"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarmain">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">Profile</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="department.html"
+                  id="dropdown02"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  >Appointments <i class="icofont-thin-down"></i
+                ></a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                  <li>
+                    <a class="dropdown-item" href="Upcoming_Appointments.html">Upcoming Appointments</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="Appointment_History.html">Appointment History</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="support.html">Support</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="EducationHub_User.html">Resources</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <section class="page-title bg-1">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="block text-center">
+              <span class="text-black">Select your Appoinment</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <div class="container">
+      <div id="appointment-scheduler"></div>
+    </div>
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+    <!-- Bootstrap 4.3.2 -->
+    <script src="plugins/bootstrap/js/popper.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/scheduler-calendar-base.js"></script>
+    <script src="js/scheduler-calendar-patient.js"></script>
+    <script>
+      (function ($) {
+        $("#appointment-scheduler").patientBookingCalendar({
+          onNewAppointmentCheck: () => {
+            let isNewAppointment = null;
+            $.ajax({
+              url: "http://3.229.127.143:8095/checkIsNewAppointmentCheck/false",
+              type: "GET",
+              dataType: "json",
+              contentType: false,
+              async: false,
+              success: function (data) {
+                isNewAppointment = data;
+              },
+              error: function (error) {
+                alert(error);
+              },
+            });
+            return Boolean(isNewAppointment);
+          },
+          // load available time slots
+          onLoadSlots: () => {
+            let slots = null;
+            $.ajax({
+              url: "http://3.229.127.143:8095/getAppointmentsByPatientId/:patient_id/:status",
+              type: "GET",
+              dataType: "json",
+              contentType: false,
+              async: false,
+              success: function (data) {
+                slots = data;
+              },
+              error: function (error) {
+                alert(error);
+              },
+            });
+            return slots;
+          },
+
+          // on appointment time submit
+          onSubmit: (json) => {
+            let formattedTime = `${json.time}:00`;
+
+            json = Object.assign(json, {
+              time: formattedTime,
+            });
+
+            console.log(json);
+          },
+        });
+      })(jQuery);
+    </script>
+  </body>
+</html>
+
+<footer class="footer section gray-bg" style="padding: 2%;">
+  <div class="row">
+      <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+  </div>
+</footer>

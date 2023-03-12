@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  
+  <title>Parama Care</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <!-- Icon Font Css -->
+  <link rel="stylesheet" href="plugins/icofont/icofont.min.css">
+  <!-- Slick Slider  CSS -->
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body id="top" onload="newiframeSrc()">
+<header>
+	<nav class="navbar navbar-expand-lg navigation" id="navbar" style="background: aliceblue;">
+		<div class="container" style="display: contents;margin: 0%;">
+		 	<a class="navbar-brand" href="index.html">
+				<img src="images/camohealth.png" alt="" class="img-fluid">
+			</a>
+
+		  	<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="icofont-navigation-menu"></span>
+		    </button>
+	  
+		  <div class="collapse navbar-collapse" id="navbarmain">
+			<ul class="navbar-nav ml-auto">
+			   <li class="nav-item"><a class="nav-link" href="EducationHub.html" style="color: blue;">Resources</a></li>
+			    <li class="nav-item"><a class="nav-link" href="Login_Users.html">Login</a></li>
+
+          <a href="Login_Users.html" class="btn btn-main-2 btn-icon btn-round-full" style="margin-top: 4%;" style="margin-bottom: 2.5%;">Schedule Appoinment </a>
+			</div>
+			</ul>
+		  </div>
+		</div>
+	</nav>
+</header>
+<section>
+    <div style="text-align-last: center;margin-left: 2%;">
+        <h2 class="mb-2 title-color">Education Hub</h2><hr>
+    </div>   
+</section>
+
+
+<!-- Slider Start -->
+<script>
+	function newiframeSrc() {
+
+       $.ajax({
+
+        url: "http://3.229.127.143:8095/beforeLogin/videos/getAllVideos",
+        type: 'GET', 
+        dataType: 'json', 
+        success: function(res) {
+            console.log(res);
+            var videos = res;
+            videos.forEach(function(video) {
+              $('#videossec1').append('<div style="margin-right:1%"><div><iframe id="iframe'+video.id+'" width="200" height="200" src="'+video.url+'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><div style="text-align:center">'+video.videoName+'</div></div></div>'); 
+             
+            });
+        }
+    });
+}
+</script>
+<section class="features-video">
+	<div style="margin: 5%;">
+		<div class="row" id="videossec1">
+    </div>
+	</div>
+ 
+</section>
+
+<!-- Main jQuery -->
+<!-- <script src="plugins/jquery/jquery.js"></script> -->
+<!-- Bootstrap 4.3.2 -->
+<script src="plugins/bootstrap/js/popper.js"></script>
+<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="plugins/counterup/jquery.easing.js"></script>
+<!-- Slick Slider -->
+<script src="plugins/slick-carousel/slick/slick.min.js"></script>
+<!-- Counterup -->
+<script src="plugins/counterup/jquery.waypoints.min.js"></script>
+
+<script src="plugins/shuffle/shuffle.min.js"></script>
+<script src="plugins/counterup/jquery.counterup.min.js"></script>
+<!-- Google Map -->
+<script src="plugins/google-map/map.js"></script>
+
+<script src="js/script.js"></script>
+<script src="js/contact.js"></script>
+
+
+</body>
+</html>
+
+<footer class="footer section gray-bg" style="padding: 2%;">
+  <div class="row">
+      <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+  </div>
+</footer>

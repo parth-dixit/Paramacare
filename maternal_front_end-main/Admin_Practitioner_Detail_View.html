@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  <title>Parama Care</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <!-- Icon Font Css -->
+  <link rel="stylesheet" href="plugins/icofont/icofont.min.css">
+  <!-- Slick Slider  CSS -->
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+
+    .checked {
+        color: orange;
+      }
+  </style>
+</head>
+
+<body id="top">
+
+  <header>
+    <nav class="navbar navbar-expand-lg navigation" id="navbar" style="background: aliceblue;">
+        <div class="container" style="display: contents;margin: 0%;">
+            <a class="navbar-brand" href="Admin_Complaints_Open.html">
+                <img src="images/camohealth.png" alt="" class="img-fluid">
+            </a>
+              <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icofont-navigation-menu"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarmain">
+            <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="Admin_Complaints_Open.html" >Complaints</a></li>
+                <li class="nav-item"><a class="nav-link" href="Admin_Patient_Details.html" >Patient</a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle"  id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: blue;" >Practitioner <i class="icofont-thin-down"></i></a>
+        <ul class="dropdown-menu" aria-labelledby="dropdown02">
+          <li><a class="dropdown-item" href="Admin_Practitioner_Requests.html">Practitioner Requests</a></li>
+          <li><a class="dropdown-item" href="Admin_Practitioner_Details.html" style="color: blue;">Practitioner Details</a></li>
+        </ul>
+        </li>
+                <li class="nav-item"><a class="nav-link" href="Admin_Video_Upload.html" >Videos</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="logout()" href="Admin_index.html">Logout</a></li>
+      <li class="nav-item"><a class="nav-link" >Welcome <span id="userName"></a></li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+</header>
+
+      <section class="section appoinment" style="padding-top: 1%;margin-right: 40%;">
+        <div style="padding-top: 1%;margin-left: 45%; "><a class="btn btn-main btn-round-full" onclick="history.back()" style="color: white;">Back</a></div> 
+        <div class="container">
+            <div class="row align-items-center">
+                <div class=" col-md-9 "style="margin-left:55%">
+                    <div class="appoinment-wrap mt-7 mt-lg-0">
+                        <h2 class="mb-2 title-color" style="margin-left:12%">Practitioner Details</h2>
+               <form id="#" class="appoinment-form" method="post" action="#" style="margin-left:15%" >
+                <div class="row">
+                    <div class="col-lg-4"  >
+                        <div class="form-group">
+                            Name:
+                        </div>
+                    </div> 
+                    <div class="col-lg-6">
+                        <div class="form-group" id="firstName">
+                        </div>
+                    </div>
+                  
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                Email address:
+                            </div>
+                        </div> 
+                         <div class="col-lg-6">
+                            <div class="form-group" id="email">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                Specialization:
+                            </div>
+                        </div> 
+                         <div class="col-lg-6">
+                            <div class="form-group" id="Specialization">
+                            
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                License:
+                            </div>
+                        </div> 
+                         <div class="col-lg-6">
+                            <div class="form-group" id="license">
+                           <a href="#"></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                Address (Line 1):
+                            </div>
+                        </div> 
+                         <div class="col-lg-6">
+                            <div class="form-group" id="address1">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                City:
+                            </div>
+                        </div> 
+                         <div class="col-lg-6">
+                            <div class="form-group" id="city">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                State:
+                            </div>
+                        </div> 
+                         <div class="col-lg-6">
+                            <div class="form-group" id="state">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                Zip Code:
+                            </div>
+                        </div> 
+                         <div class="col-lg-6">
+                            <div class="form-group" id="zipcode">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                Phone number:
+                            </div>
+                        </div> 
+                         <div class="col-lg-6">
+                            <div class="form-group" id="number">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                Ratings:
+                            </div>
+                        </div>
+                        <div class="col-lg-6" >
+                            <div class="form-group" id="rating" style="display:flex; justify-content: space-evenly;">
+                                
+                            </div>
+                        </div>
+                        
+                  
+                </form>              
+                </div>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div>
+    <hr style="width:50%; height: 4px ; color: blue;"> 
+    <div id="ratings" style="margin-left: 42%;"></div>
+</div>
+<br><br>
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/jquery.js"></script>
+    <!-- Bootstrap 4.3.2 -->
+    <script src="plugins/bootstrap/js/popper.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/counterup/jquery.easing.js"></script>
+    <!-- Slick Slider -->
+    <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+    <!-- Counterup -->
+    <script src="plugins/counterup/jquery.waypoints.min.js"></script>
+    
+    <script src="plugins/shuffle/shuffle.min.js"></script>
+    <script src="plugins/counterup/jquery.counterup.min.js"></script>
+    <!-- Google Map -->
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+    <script>
+         $(document).ready(function(){
+            document.getElementById("userName").innerHTML = JSON.parse(localStorage.getItem('Jwt')).userName;
+                const id = new URLSearchParams(window.location.search).get('user')
+                const local_data = JSON.parse(localStorage.getItem('practitionerDetails'))
+                const current_user = local_data.find(el => {
+                if(el.id == id){
+                     return el
+                  }    
+            })
+           
+      
+            $.ajax({
+           
+           url: 'http://3.229.127.143:8095/getAverageRating/'+id,
+           type: "GET",
+           headers: {
+                      'Content-Type': "application/json",
+                      'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    }, 
+
+           success: function (data) {
+               overall = 5
+               isFloat = data % 1  == 0 ? false: true
+               current = Number(data)
+               remaining = overall - current
+               
+               a = ""
+               for(let i = 1; i < current; i++){
+                   a = a + ('<span style="width: 24px; height: 24px"><svg xmlns="http://www.w3.org/2000/svg"  fill="orange" viewBox="0 -10 511.987 511"><path d="M510.652 185.902a27.158 27.158 0 00-23.425-18.71l-147.774-13.419-58.433-136.77C276.71 6.98 266.898.494 255.996.494s-20.715 6.487-25.023 16.534l-58.434 136.746-147.797 13.418A27.208 27.208 0 001.34 185.902c-3.371 10.368-.258 21.739 7.957 28.907l111.7 97.96-32.938 145.09c-2.41 10.668 1.73 21.696 10.582 28.094 4.757 3.438 10.324 5.188 15.937 5.188 4.84 0 9.64-1.305 13.95-3.883l127.468-76.184 127.422 76.184c9.324 5.61 21.078 5.097 29.91-1.305a27.223 27.223 0 0010.582-28.094l-32.937-145.09 111.699-97.94a27.224 27.224 0 007.98-28.927zm0 0" fill="#ffc107"/></svg></span>')
+               }
+
+               if(isFloat){
+                   a = a + '<span style="width: 22px; height: 22px"><svg xmlns="http://www.w3.org/2000/svg" fill="orange" viewBox="0 0 24 24"><path d="M23.79 9.87l-5.36 5.49 1.26 7.77c.111.62-.562 1.074-1.1.78L12 20.26V.03c.28 0 .56.13.68.4l3.31 7.05 7.37 1.12c.616.11.843.835.43 1.27z" fill="#ffe8a1"/><path d="M12 .03v20.23l-6.59 3.65c-.529.297-1.212-.153-1.1-.78l1.26-7.77L.21 9.87A.757.757 0 01.64 8.6l7.37-1.12L11.32.43c.12-.27.4-.4.68-.4z" fill="orange"/></svg></span>'
+               } 
+
+               for(let i = 1; i < remaining; i++){
+                   a = a + ('<span style="width: 24px; height: 24px"><svg xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="#b5a4a4" viewBox="0 -10 511.987 511"><path d="M114.594 491.14c-5.61 0-11.18-1.75-15.934-5.187a27.223 27.223 0 01-10.582-28.094l32.938-145.09L9.312 214.81a27.188 27.188 0 01-7.976-28.907 27.208 27.208 0 0123.402-18.71l147.797-13.419L230.97 17.027C235.277 6.98 245.089.492 255.992.492s20.715 6.488 25.024 16.512l58.433 136.77 147.774 13.417c10.882.98 20.054 8.344 23.425 18.711 3.372 10.368.254 21.739-7.957 28.907L390.988 312.75l32.938 145.086c2.414 10.668-1.727 21.7-10.578 28.098-8.832 6.398-20.61 6.89-29.91 1.3l-127.446-76.16-127.445 76.203c-4.309 2.559-9.11 3.864-13.953 3.864zm141.398-112.874c4.844 0 9.64 1.3 13.953 3.859l120.278 71.938-31.086-136.942a27.21 27.21 0 018.62-26.516l105.473-92.5-139.543-12.671a27.18 27.18 0 01-22.613-16.493L255.992 39.895 200.844 168.96c-3.883 9.195-12.524 15.512-22.547 16.43L38.734 198.062l105.47 92.5c7.554 6.614 10.858 16.77 8.62 26.54l-31.062 136.937 120.277-71.914c4.309-2.559 9.11-3.86 13.953-3.86zm-84.586-221.848s0 .023-.023.043zm169.13-.063l.023.043c0-.023 0-.023-.024-.043zm0 0"/></svg></span>')
+               }
+               document.getElementById('rating').innerHTML = a
+
+               $.ajax({
+           
+           url: 'http://3.229.127.143:8095/getReviewAndRating/'+id,
+           type: "GET",
+           headers: {
+                      'Content-Type': "application/json",
+                      'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    }, 
+
+           success: function (data) {
+               console.log(data)
+               var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0');
+                var yyyy = today.getFullYear();
+                var options = {year: 'numeric', month: 'long', day: 'numeric' };
+                       
+                var mainContainer = document.getElementById("ratings");
+                var div0 = document.createElement("div");
+                div0.innerHTML = "<br><h4>Ratings and Reviews</h4>";
+                mainContainer.appendChild(div0);
+                for (var i = 0; i < data.length; i++) {
+                   
+                    var div = document.createElement("div");
+                    var div1 = document.createElement("div");
+                    overall = 5
+                    isFloat = (data[i].rating) % 1  == 0 ? false: true
+                    current = data[i].rating
+                    remaining = overall - current
+                    
+                    b = ""
+                    for(let i = 0; i < current; i++){
+                        b = b + ('<span style="width: 24px; height: 24px"><svg xmlns="http://www.w3.org/2000/svg"  fill="orange" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg></span>')
+                    }
+
+                    if(isFloat){
+                        b = b + ('<span style="width: 22px; height: 22px"><svg xmlns="http://www.w3.org/2000/svg" fill="orange" viewBox="0 0 24 24"><path d="M23.79 9.87l-5.36 5.49 1.26 7.77c.111.62-.562 1.074-1.1.78L12 20.26V.03c.28 0 .56.13.68.4l3.31 7.05 7.37 1.12c.616.11.843.835.43 1.27z" fill="#d0cfcf"/><path d="M12 .03v20.23l-6.59 3.65c-.529.297-1.212-.153-1.1-.78l1.26-7.77L.21 9.87A.757.757 0 01.64 8.6l7.37-1.12L11.32.43c.12-.27.4-.4.68-.4z" fill="orange"/></svg></span>')
+                    } 
+
+                    for(let i = 0; i < remaining; i++){
+                        b = b + ('<span style="width: 24px; height: 24px"><svg xmlns="http://www.w3.org/2000/svg" fill="lightgrey" viewBox="0 0 24 24" ><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg></span>')
+                    }
+                            
+                    
+                            div.innerHTML =  "<br>"+data[i].first_name+"   "+data[i].last_name;
+                            div1.innerHTML = "<span style='display:flex'>"+b + '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' + data[i].review+"<br>" +"</span"+"<br>"
+
+                        
+                            mainContainer.appendChild(div);
+                            mainContainer.appendChild(div1);
+                        }
+    
+
+           },
+           error: function (error) {
+               console.log(error);
+               document.getElementById('rating').innerText = "No Ratings Available"
+           }
+       })
+
+           
+           },
+           error: function (error) {
+               console.log(error);
+               document.getElementById('rating').innerText = "No Ratings Available"
+           }
+       })
+       $.ajax({
+           url: 'http://3.229.127.143:8095/users/getPractitionerSpeciality/'+id,
+           type: "GET",
+           headers: {
+                     'Content-Type': "application/json",
+                     'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    }, 
+
+        success: function (data) {
+            var Speciality=""
+            data.forEach(element => {
+                if(element==1){
+                    Speciality=Speciality+"Sleep Training, "
+                }
+                else if(element == 2){
+                    Speciality=Speciality+"Lactation Consultation, "
+                }
+                else if(element == 3){
+                    Speciality=Speciality+"Doula Match, "
+                }
+                else if(element == 4){
+                    Speciality=Speciality+"Midwife Therapy, "
+                }
+                else if(element == 5){
+                    Speciality=Speciality+"Pelvic Floor Therapy, "
+                }
+                else if(element == 6){
+                    Speciality=Speciality+"Postpartum Depression Therapy, "
+                }
+                else if(element == 7){
+                    Speciality=Speciality+"Nutritional Training, "
+                }
+            });
+            document.getElementById('Specialization').innerHTML = Speciality
+           },
+           error: function (error) {
+               console.log(error);
+               document.getElementById('Specialization').innerText = "No Specializaion Updated"
+           }
+       })
+      
+  
+        document.getElementById('firstName').innerText = current_user.firstName
+        document.getElementById('email').innerText = current_user.email
+        document.getElementById('address1').innerText = current_user.address1
+        document.getElementById('city').innerText = current_user.city
+        document.getElementById('state').innerText = current_user.state
+        document.getElementById('zipcode').innerText = current_user.zipcode
+        document.getElementById('number').innerText = current_user.phoneNumber
+        document.getElementById('license').innerHTML = `<a href="${current_user.license}" target="_blank">${current_user.licenseFileName}</a>`   
+    })  
+    function logout(){
+         localStorage.removeItem('Jwt'); 
+	}
+    </script>
+
+  </body>
+  </html>
+ 
+  <footer class="footer section gray-bg" style="padding: 2%;">
+    <div class="row">
+        <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+    </div>
+</footer>

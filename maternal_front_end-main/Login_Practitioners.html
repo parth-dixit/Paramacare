@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  
+  <title>Parama Care</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <!-- Icon Font Css -->
+  <link rel="stylesheet" href="plugins/icofont/icofont.min.css">
+  <!-- Slick Slider  CSS -->
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body id="top">
+
+	<header>
+		<nav class="navbar navbar-expand-lg navigation" id="navbar" style="background: aliceblue;">
+			<div class="container" style="display: contents;margin: 0%;">
+				  <a class="navbar-brand" href="index.html">
+					  <img src="images/camohealth.png" alt="" class="img-fluid">
+				  </a>
+	
+				  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="icofont-navigation-menu"></span>
+			  </button>
+		  
+			  <div class="collapse navbar-collapse" id="navbarmain">
+				<ul class="navbar-nav ml-auto">
+				   <li class="nav-item"><a class="nav-link" href="EducationHub.html">Resources</a></li>
+					<div class="btn-container ">
+						<a href="Login_Practitioners.html" class="btn btn-main-2 btn-icon btn-round-full" style = "margin-top: 2.5%;" >Schedule Appoinment </a>
+					</div>
+				</ul>
+			  </div>
+			</div>
+		</nav>
+	</header>
+	
+
+<section class="section appoinment" style="padding-top: 0.5%;">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-6 ">
+				<div class="appoinment-content">
+					<img src="images/about/l1.png" alt="" class="img-fluid">
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-5 ">
+				<div class="appoinment-wrap mt-6 mt-lg-0">
+					<h2 class="mb-2 title-color">Practitioner Login</h2>
+					     <form id="#" class="appoinment-form" method="post" action="#">
+                    <div class="row">
+                         <div class="col-lg-6">
+                            <div class="form-group">
+								Email address:<span style="color: red;">*</span>
+                            </div>
+                        </div>
+						<div class="col-lg-6">
+                            <div class="form-group">
+                                <input name="email" id="email" type="text" class="form-control" required>
+								<label id="lblEmail"><span style="color: red;"><i>Please Enter Email
+									ID</i></span></label>
+                            </div>
+                        </div>
+						<div class="col-lg-6">
+                            <div class="form-group">
+								Password:<span style="color: red;">*</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <input name="password" id="password" type="password" class="form-control">
+								<label id="lblPassword"><span style="color: red;"><i>Please Enter
+									Password</i></span></label>
+                            </div>
+                        </div>
+						<div class="col-lg-6">
+                        </div>
+						<div class="col-lg-6">
+                            <div class="form-group">
+								<a href ="PractitionerForgotPassword.html">Forgot password</a>	
+                            </div>
+                        </div>
+						<div class="col-lg-12">
+							<div class="form-group">
+								<a href="Login_Users.html">Not a practitioner? Click here for user</a>
+							</div>
+
+						</div>
+                    </div>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color: white;" class="btn btn-main btn-round-full" id="login" onclick="Login()" >Login</a>
+                </form>
+            </div>
+			</div>
+		</div>
+	</div>
+</section>
+  
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+    
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/jquery.js"></script>
+    <!-- Bootstrap 4.3.2 -->
+    <script src="plugins/bootstrap/js/popper.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/counterup/jquery.easing.js"></script>
+    <!-- Slick Slider -->
+    <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+    <!-- Counterup -->
+    <script src="plugins/counterup/jquery.waypoints.min.js"></script>
+    
+    <script src="plugins/shuffle/shuffle.min.js"></script>
+    <script src="plugins/counterup/jquery.counterup.min.js"></script>
+    <!-- Google Map -->
+    <script src="plugins/google-map/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>    
+    
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+
+  </body>
+  </html>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  <script>
+	  $(document).ready(function () {
+		addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("login").click();
+        }
+        });
+		  $('#lblEmail').hide();
+		  $('#lblPassword').hide();
+		});
+	function Login(){
+		var count = 0;
+		if ($('#email').val() == '') {
+
+			$('#lblEmail').show();
+			count++;
+		}
+		else{
+			$('#lblEmail').hide();
+		}
+		if($('#password').val() == ''){
+			$('#lblPassword').show();
+			count++;
+		}
+		else{
+			$('#lblPassword').hide();
+		}
+
+		if (IsEmail($('#email').val()) == false) {
+			$('#lblEmail').show();
+			count++;
+		}
+
+		if(count > 0){
+			return false;
+		}
+		if(IsEmail($('#email').val()) == false){
+			alert("Please enter valid email!");
+			return false;
+		}
+	
+	function IsEmail(email) {
+		var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		if(!regex.test(email)) {
+			return false;
+		}else
+		{
+			return true;
+		}
+}
+	
+$.ajax({
+  url: 'http://3.229.127.143:8095/beforeLogin/login/Practitioner',
+  type: "POST",
+  data: JSON.stringify({
+	emailId:$('#email').val(),
+  password:$('#password').val()
+  
+  }),
+  dataType: "json",
+  contentType: "application/json;charset=utf-8",
+  success: function (data) {
+	  localStorage.setItem('Jwt', JSON.stringify(data));
+	  window.location.href = "Practitioner_Upcoming_Appointments.html";
+	  
+  },
+  error: function (error) {
+	Swal.fire({
+					title: "<i>Error</i>",
+					html: error.responseText,
+					confirmButtonText: "Okay</u>",
+				});
+  }
+});
+	}
+</script>
+
+<footer class="footer section gray-bg" style="padding: 2%;">
+    <div class="row">
+        <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+    </div>
+</footer>

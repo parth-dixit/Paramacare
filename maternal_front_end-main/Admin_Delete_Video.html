@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <title>Parama Care</title>
+
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="plugins/icofont/icofont.min.css" />
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"
+    />
+
+    <!-- jQuery library file -->
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.5.1.js"
+    ></script>
+
+    <!-- Datatable plugin JS library file -->
+    <script
+      type="text/javascript"
+      src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"
+    ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body id="top">
+    <header>
+      <nav
+        class="navbar navbar-expand-lg navigation"
+        id="navbar"
+        style="background: aliceblue"
+      >
+        <div class="container" style="display: contents; margin: 0%">
+          <a class="navbar-brand" href="Admin_Complaints_Open.html">
+            <img src="images/camohealth.png" alt="" class="img-fluid" />
+          </a>
+
+          <button
+            class="navbar-toggler collapsed"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarmain"
+            aria-controls="navbarmain"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="icofont-navigation-menu"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarmain">
+            <ul class="navbar-nav ml-auto">
+
+              <li class="nav-item">
+                <a class="nav-link" href="Admin_Complaints_Open.html">Complaints</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Admin_Patient_Details.html"
+                  >Patient</a
+                >
+              </li>
+              <li class="nav-item">
+        <a class="nav-link"  id="dropdown02" aria-haspopup="true" aria-expanded="false" href="Admin_Practitioner_Requests.html">Practitioner</a>
+        </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="Admin_Video_Upload.html"
+                  style="color: blue"
+                  >Videos</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="logout()" href="Admin_index.html"
+                  >Logout</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">Welcome <span id="userName"></span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <nav class="navbar navbar-expand-lg navigation" id="navbar">
+      <div id="snackbar">Video has been deleted</div>
+      <div class="container" style="display: contents; margin: 0%">
+        <div class="collapse navbar-collapse" id="navbarmain">
+          <ul class="navbar-nav" style="margin-left: 38%">
+            <li class="nav-item">
+              <a class="nav-link" href="Admin_Video_Upload.html"
+                >Upload a Video</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="Admin_Delete_Video.html"
+                style="color: blue"
+                >Edit a Video</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="custom_table" margin-left="2%">
+      <table id="Video_Details" class="display">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Link</th>
+            <th>Date Created</th>
+            <th>Edit Video</th>
+            <th>Delete Video</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div
+      style="margin-left: 25%; text-align-last: center; padding-top: 7%"
+      id="approve"
+    ></div>
+
+    <div id="id01" class="modal">
+      <span
+        onclick="document.getElementById('id01').style.display='none'"
+        class="close"
+        title="Close Modal"
+        >×</span
+      >
+      <form class="modal-content">
+        <div class="contain">
+          <h4>Delete Video</h4>
+          <p>Are you sure you want to delete this video?</p>
+
+          <div class="clearfix">
+            <button
+              type="button"
+              onclick="document.getElementById('id01').style.display = 'none'"
+              class="cancelbtn"
+            >
+              Cancel
+            </button>
+            <button type="button" onclick="del()" class="deletebtn">
+              Delete
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        var modal = document.getElementById("id01");
+        document.getElementById("userName").innerHTML = JSON.parse(
+          localStorage.getItem("Jwt")
+        ).userName;
+        fetch("http://3.229.127.143:8095/beforeLogin/videos/getAllVideos", {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${
+              JSON.parse(localStorage.getItem("Jwt")).jwt
+            }`,
+          },
+          method: "GET",
+        })
+          .then((data) => data.json())
+          .then((data) => {
+            data.forEach((el) => {
+              el["delete"] = "Delete";
+              el["edit"] = "Edit";
+            });
+
+            localStorage.setItem("deleteVideo", JSON.stringify(data));
+            var options = { year: "numeric", month: "long", day: "numeric" };
+
+            $("#Video_Details").DataTable({
+              data: data,
+              columns: [
+                { data: "videoName" },
+                {
+                  data: "url",
+                  render: function (data, type, row, meta) {
+                    if (type === "display") {
+                      data = `<a href="${row.url}" target='_blank'>${row.url}</a>`;
+                    }
+                    return data;
+                  },
+                },
+
+                {
+                  data: "createdOn",
+                  render: function (data, type, row, meta) {
+                    if (type === "display") {
+                      var options = {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      };
+                      today = new Date(row.createdOn);
+                      data = today.toLocaleDateString("en-US", options);
+                    }
+                    return data;
+                  },
+                },
+                {
+                  data: "edit",
+                  render: function (data, type, row, meta) {
+                    if (type === "display") {
+                      data =
+                        `<a href="Admin_Edit_Video.html?videoId=${row.id}">` +
+                        data +
+                        "</a>";
+                    }
+                    return data;
+                  },
+                },
+                {
+                  data: "delete",
+                  render: function (data, type, row, meta) {
+                    if (type === "display") {
+                      data =
+                        "<a href='javascript:javascript:void(0)' onclick=delet(" +
+                        row.id +
+                        ")> Delete</a>";
+                    }
+                    return data;
+                  },
+                },
+              ],
+            });
+          });
+      });
+
+      function delet(id) {
+        const local_data = JSON.parse(localStorage.getItem("deleteVideo"));
+        const current_user = local_data.find((el) => {
+          if (el.id == id) {
+            return el;
+          }
+        });
+        window.globalDeleteId = id;
+        console.log( window.globalDeleteId);
+        document.getElementById("id01").style.display = "block";
+      }
+
+      function del() {
+        var id = window.globalDeleteId;
+       
+        $.ajax({
+          url: "http://3.229.127.143:8095/api/hub/deleteVideo/" + id,
+          type: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${
+              JSON.parse(localStorage.getItem("Jwt")).jwt
+            }`,
+          },
+          success: function (data) {
+            console.log("data");
+            modal.style.display = "none";
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function () {
+              x.className = x.className.replace("show", "");
+            }, 3000);
+            setTimeout(() => {  document.location.reload(); }, 3000);
+            
+          
+          },
+          error: function (error) {
+            console.log("data");
+
+            var x = document.getElementById("failure");
+            x.className = "show";
+            setTimeout(function () {
+              x.className = x.className.replace("show", "");
+            }, 3000);
+          },
+        });
+      }
+
+      var modal = document.getElementById("id01");
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+
+      function reloadP() {
+        document.location.reload();
+       
+      }
+
+      function logout() {
+        localStorage.removeItem("Jwt");
+      }
+    </script>
+  </body>
+</html>
+
+<footer class="footer section gray-bg" style="padding: 2%;">
+  <div class="row">
+      <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+  </div>
+</footer>

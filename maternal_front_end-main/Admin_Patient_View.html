@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <title>Parama Care</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css" />
+    <!-- Icon Font Css -->
+    <link rel="stylesheet" href="plugins/icofont/icofont.min.css" />
+    <!-- Slick Slider  CSS -->
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css" />
+    <link
+      rel="stylesheet"
+      href="plugins/slick-carousel/slick/slick-theme.css"
+    />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body id="top">
+    <header>
+      <nav
+        class="navbar navbar-expand-lg navigation"
+        id="navbar"
+        style="background: aliceblue"
+      >
+        
+        <div class="container" style="display: contents; margin: 0%">
+          <a class="navbar-brand" href="Admin_Complaints_Open.html">
+            <img src="images/camohealth.png" alt="" class="img-fluid" />
+          </a>
+          <button
+            class="navbar-toggler collapsed"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarmain"
+            aria-controls="navbarmain"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="icofont-navigation-menu"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarmain">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="Admin_Complaints_Open.html"
+                  >Complaints</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="Admin_Patient_Details.html"
+                  style="color: blue"
+                  >Patient</a
+                >
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  id="dropdown02"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  >Practitioner <i class="icofont-thin-down"></i
+                ></a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="Admin_Practitioner_Requests.html"
+                      >Practitioner Requests</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="Admin_Practitioner_Details.html"
+                      >Practitioner Details</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Admin_Video_Upload.html">Videos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="logout()" href="Admin_index.html"
+                  >Logout</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">Welcome <span id="userName"></span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section
+      class="section appoinment"
+      style="padding-top: 3%; margin-right: 40%"
+    >
+      <div style="margin-left: 27%">
+        <a
+          class="btn btn-main btn-round-full"
+          onclick="history.back()"
+          style="color: white"
+          >Back</a
+        >
+      </div>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-9" style="margin-left: 55%">
+            <div class="appoinment-wrap mt-7 mt-lg-0">
+              <h2 class="mb-2 title-color" style="margin-left: 18%">
+                Patient Details
+              </h2>
+              <form
+                id="#"
+                class="appoinment-form"
+                method="post"
+                action="#"
+                style="margin-left: 15%"
+              >
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group">Name:</div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group" id="firstName"></div>
+                  </div>
+
+                  <div class="col-lg-4">
+                    <div class="form-group">Email address:</div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group" id="email"></div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">Address (Line 1):</div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group" id="address1"></div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">City:</div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group" id="city"></div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">State:</div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group" id="state"></div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">Zip Code:</div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group" id="zipcode"></div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">Phone number:</div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group" id="number"></div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">Insurance Plan:</div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group" id="insurancePlan"></div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">Insurance Number:</div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group" id="insuranceNum"></div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group" id="appointment_history"></div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/jquery.js"></script>
+    <!-- Bootstrap 4.3.2 -->
+    <script src="plugins/bootstrap/js/popper.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/counterup/jquery.easing.js"></script>
+    <!-- Slick Slider -->
+    <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+    <!-- Counterup -->
+    <script src="plugins/counterup/jquery.waypoints.min.js"></script>
+
+    <script src="plugins/shuffle/shuffle.min.js"></script>
+    <script src="plugins/counterup/jquery.counterup.min.js"></script>
+
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+  </body>
+</html>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"
+></script>
+
+<script>
+  $(document).ready(function () {
+    document.getElementById("userName").innerHTML = JSON.parse(
+      localStorage.getItem("Jwt")
+    ).userName;
+    const id = new URLSearchParams(window.location.search).get("user");
+    const local_data = JSON.parse(localStorage.getItem("patient"));
+    const current_user = local_data.find((el) => {
+      if (el.id == id) {
+        return el;
+      }
+    });
+    document.getElementById("firstName").innerText = current_user.firstName;
+    document.getElementById("email").innerText = current_user.email;
+    document.getElementById("address1").innerText = current_user.address1;
+    document.getElementById("city").innerText = current_user.city;
+    document.getElementById("state").innerText = current_user.state;
+    document.getElementById("zipcode").innerText = current_user.zipcode;
+    document.getElementById("number").innerText = current_user.phoneNumber;
+    document.getElementById("insurancePlan").innerText =
+      current_user.insurancePlan;
+    document.getElementById("insuranceNum").innerText =
+      current_user.insuranceNum;
+    document.getElementById(
+      "appointment_history"
+    ).innerHTML = `<a href="Admin_Appointment_History.html?patient=${id}"><u>Appointment History<u></a>`;
+  });
+
+  function logout() {
+    localStorage.removeItem("Jwt");
+  }
+</script>
+
+<footer class="footer section gray-bg" style="padding: 2%;">
+  <div class="row">
+      <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+  </div>
+</footer>

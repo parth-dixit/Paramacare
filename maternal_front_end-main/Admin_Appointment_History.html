@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <title>Parama Care</title>
+
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="plugins/icofont/icofont.min.css" />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"
+    />
+
+    <!-- jQuery library file -->
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.5.1.js"
+    ></script>
+
+    <!-- Datatable plugin JS library file -->
+    <script
+      type="text/javascript"
+      src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"
+    ></script>
+  </head>
+
+  <body id="top">
+    <header>
+      <nav
+        class="navbar navbar-expand-lg navigation"
+        id="navbar"
+        style="background: aliceblue"
+      >
+        <div class="container" style="display: contents; margin: 0%">
+          <a class="navbar-brand" href="Admin_Complaints_Open.html">
+            <img src="images/camohealth.png" alt="" class="img-fluid" />
+          </a>
+
+          <button
+            class="navbar-toggler collapsed"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarmain"
+            aria-controls="navbarmain"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="icofont-navigation-menu"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarmain">
+            <ul class="navbar-nav ml-auto">
+
+              <li class="nav-item">
+                <a class="nav-link" href="Admin_Complaints_Open.html"
+                  >Complaints</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="Admin_Patient_Details.html"
+                  style="color: blue"
+                  >Patient</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"  id="dropdown02" aria-haspopup="true" aria-expanded="false" href="Admin_Practitioner_Requests.html">Practitioner</a>
+                </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Admin_Video_Upload.html">Videos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="logout()" href="Admin_index.html"
+                  >Logout</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">Welcome <span id="userName"></span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="block text-center">
+            <span class="text-black">Appointment History</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <div class="custom_table" margin-left="2%">
+      <table id="user_past_appointment" class="display">
+        <thead>
+          <tr>
+            <th>Patient</th>
+            <th>Practitioner</th>
+            <th>Consultation</th>
+            <th>Format</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+    <script>
+      src = "https://code.jquery.com/jquery-3.6.0.js";
+      integrity = "sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=";
+      crossorigin = "anonymous";
+      function ClearHistory() {
+        var backlen = history.length;
+        history.go(-backlen);
+        window.location.href = loggedOutPageUrl;
+      }
+      $(document).ready(function () {
+        document.getElementById("userName").innerHTML = JSON.parse(
+          localStorage.getItem("Jwt")
+        ).userName;
+        const id = new URLSearchParams(window.location.search).get("patient");
+       
+
+        console.log(id);
+        fetch(
+          "http://3.229.127.143:8095/getAppointmentsByPatientIdAdmin/" +
+            id +
+            "/Completed",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${
+                JSON.parse(localStorage.getItem("Jwt")).jwt
+              }`,
+            },
+            method: "GET",
+          }
+        )
+          .then((data) => data.json())
+          .then((data) => {
+            localStorage.setItem("user_past_appointment", JSON.stringify(data));
+            $("#user_past_appointment").DataTable({
+              data: data,
+              columns: [
+                { data: "patientName" },
+                { data: "practitionerName" },
+                { data: "speciality" },
+                { data: "appointmentMode" },
+                { data: "timeSlot" ,
+                render: function (data, type, row, meta) {
+                      console.log(row);
+                      if (type === "display") {
+                        data = row.timeSlot.substring(4,14);{
+                          var options = {year: 'numeric', month: 'long', day: 'numeric' };
+                                  today=new Date(data);
+                                  data=today.toLocaleDateString("en-US", options); 
+                        }
+                      }
+                      return data;
+                    },},
+                  { data: "timeSlot" ,
+                render: function (data, type, row, meta) {
+                      console.log(row);
+                      if (type === "display") {
+                        data = row.timeSlot.substring(15) + ":00"
+                      }
+                      return data;
+                    },},
+              
+                
+                { data: "status" },
+              ],
+            });
+          });
+      });
+      function logout(){
+      localStorage.removeItem('Jwt'); 
+      var backlen = history.length;
+          history.go(-backlen);
+         
+	}
+    </script>
+  </body>
+</html>
+
+<footer class="footer section gray-bg" style="padding: 2%;">
+  <div class="row">
+      <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+  </div>
+</footer>

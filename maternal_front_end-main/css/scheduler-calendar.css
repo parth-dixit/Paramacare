@@ -1,0 +1,264 @@
+#sch-container {
+  width: inherit;
+}
+
+#sch-nav-container {
+  margin-bottom: 15px;
+  width: inherit;
+}
+
+#sch-week-container {
+  border: 1px solid #e0e0e0;
+}
+
+#sch-dates-container {
+  background-color: #fafafa;
+}
+
+.sch-date-header {
+  border-right: 1px solid #e0e0e0;
+  display: inline-block;
+  min-height: 50px;
+  padding: 15px 0px 15px 15px;
+  vertical-align: top;
+  width: calc(100% / 7);
+}
+
+.sch-date-header:first-of-type {
+  padding-left: 15px;
+}
+
+.sch-date-header:last-of-type {
+  border-right: none;
+}
+
+#sch-available-time-container {
+  border-top: 1px solid #e0e0e0;
+  min-height: 150px;
+}
+
+.sch-day-time-container {
+  display: inline-block;
+  height: 100%;
+  padding: 0;
+  vertical-align: top;
+  width: calc(100% / 7);
+}
+
+.sch-day-time-container:first-of-type {
+  padding-left: 0;
+}
+
+.sch-day-time-container:last-of-type {
+  border-right: none;
+  /* width: 13%; */
+}
+
+.sch-date-number {
+  font-size: 1.8em;
+  font-weight: lighter;
+}
+
+.sch-footer-title {
+  font-size: 1.8em;
+  font-weight: lighter;
+}
+
+.sch-date-display {
+  font-weight: lighter;
+}
+
+.sch-available-time {
+  color: #1b1b1b;
+  display: block;
+  padding: 10px 0px 10px 0px;
+  text-align: center;
+  border: 1px solid #29b6f6;
+  cursor: pointer;
+}
+
+.time-slot-empty {
+  padding: 10px 0px 10px 0px;
+  text-align: center;
+  color: rgb(227, 70, 22);
+}
+
+.time-slot {
+  padding: 0px 0px 8px 0px;
+}
+
+@media only screen and (min-width: 720px) {
+  .time-slot {
+    padding: 8px;
+  }
+}
+
+.sch-available-time.selected,
+.sch-available-time:not(.is-not-toggleable):hover {
+  background-color: #222;
+  color: #ffffff;
+}
+
+.sch-available-time.booked {
+  color: #222;
+}
+
+@media only screen and (max-width: 768px) {
+  .sch-date-header,
+  .sch-day-time-container {
+    width: 13.5%;
+  }
+}
+
+.sch-day-time-container {
+  border-right: 1px solid #e0e0e0;
+}
+
+.sch-day-time-container:last-of-type {
+  border-right: none;
+}
+
+#sch-selected-date-container {
+  padding: 0;
+}
+
+.sch-selected-date-time {
+  display: inline-block;
+  padding: 0px 0px 8px 0px;
+  vertical-align: bottom;
+}
+
+.sch-selected-date {
+  padding: 0px 0px 8px 0px;
+  vertical-align: bottom;
+  display: flex;
+}
+
+.sch-selected-date-time > i {
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+.sch-selected-date-time {
+  padding-left: 1em;
+}
+
+#sch-footer-container li {
+  list-style-type: none !important;
+}
+
+#sch-footer-container {
+  display: flex;
+}
+#sch-footer-left {
+  flex: 1;
+  padding: 15px 0px 0px 0px;
+}
+#sch-footer-right {
+  flex: 0;
+  padding: 15px 0px 0px 15px;
+}
+#sch-submit-button {
+  background-color: #29b6f6;
+  border: none;
+  color: #ffffff;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+#sch-submit-button:disabled {
+  background-color: #e0e0e0;
+  color: #898989;
+}
+
+.sch-month-title {
+  font-size: 1.2em;
+  font-weight: lighter;
+  text-align: center;
+  padding: 15px 0px 15px 0px;
+}
+
+.sch-calendar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sch-nav-btn i {
+  vertical-align: middle;
+}
+
+.sch-nav-btn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 8px 8px 8px;
+  vertical-align: middle;
+  border: #1b1b1b 1px solid;
+  color: #1b1b1b;
+}
+
+.sch-nav-btn[disabled] {
+  border: #cccccc 1px solid;
+  color: #cccccc;
+  cursor: not-allowed;
+}
+
+.sch-toolbar {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 16px;
+}
+
+.custom-control-input:disabled ~ .custom-control-label::before {
+  cursor: not-allowed;
+}
+
+.sch-practitioner-title {
+  text-align: center;
+  padding: 0px 0px 15px 0px;
+}
+
+.sch-available-time.is-not-toggleable {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+#sch-meet-selecion-container {
+  display: flex;
+}
+
+#ajax-backdrop {
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 99999;
+}
+
+#ajax-loader-text {
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 8px;
+}
+
+#ajax-backdrop-content {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  
+  text-align: center;
+}

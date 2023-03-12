@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  
+  <title>Parama Care</title>
+
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href=
+  "https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+    
+       <!-- jQuery library file -->
+
+       <link rel="stylesheet" href=
+  "https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+  <script type="text/javascript" 
+       src="https://code.jquery.com/jquery-3.5.1.js">
+       </script>
+    
+        <!-- Datatable plugin JS library file -->
+       <script type="text/javascript" src=
+  "https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js">
+       </script>
+    
+
+
+</head>
+
+<body id="top">
+
+  <header>
+    <nav class="navbar navbar-expand-lg navigation" id="navbar" style="background: aliceblue;">
+      <div class="container" style="display: contents;margin: 0%;">
+          <a class="navbar-brand" href="Schedule_Appointment.html">
+              <img src="images/camohealth.png" alt="" class="img-fluid">
+          </a>
+
+          <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain"
+              aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="icofont-navigation-menu"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarmain">
+              <ul class="navbar-nav ml-auto">
+
+                  <li class="nav-item"><a class="nav-link" href="EditUser.html">Profile</a></li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="department.html" id="dropdown02"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: blue;">Appointments <i
+                              class="icofont-thin-down"></i></a>
+                      <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                          <li><a class="dropdown-item" href="Users_Upcoming_Appointments.html" >Upcoming
+                                  Appointments</a></li>
+                          <li><a class="dropdown-item" href="Users_Appointment_History.html" style="color: blue;">Appointment
+                                  History</a></li>
+                      </ul>
+                  </li>
+                  <li class="nav-item"><a class="nav-link" href="UserSupportList.html">Support</a>
+                  </li>
+                  <li class="nav-item"><a class="nav-link" href="EducationHub_User.html">Resources</a></li>
+
+                  <li class="nav-item"><a class="nav-link" onclick="logout()" href="Login_Users.html">Logout</a></li>
+              <li class="nav-item"><a class="nav-link" >Welcome <span id="userName"></span></a></li>
+                  <div class="btn-container ">
+                      <a href="Schedule_Appointment.html" class="btn btn-main-2 btn-icon btn-round-full"
+                          style="margin-top: 2.5%;">Schedule Appoinment </a>
+                  </div>
+              </ul>
+          </div>
+      </div>
+  </nav>
+</header>
+    <section>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="block text-center">
+                <span class="text-black">Appointment History</span>
+              </div>
+            </div>
+          </div>
+          
+      </section>
+
+        <div style="margin-right: 5%;margin-left: 5%;margin-top: 2%;">
+          <table id="user_past_appointment">
+            <thead>
+              <tr>
+                <th>Patient</th>
+                <th>Consultation</th>
+                <th>Format</th>
+                <th>Date</th>
+                <th>Time</th>
+                <!-- <th>Zoom</th> -->
+                <th>Status</th>
+                <th>Cancel Reason</th>
+                <th>Reschedule</th>
+                <th>Review</th>
+              </tr>
+            </thead>
+          </table>
+      </div>
+   
+        <script>
+
+          src = "https://code.jquery.com/jquery-3.6.0.js";
+          integrity = "sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=";
+          crossorigin = "anonymous";
+  
+          $(document).ready(function () {
+           
+            document.getElementById("userName").innerHTML = JSON.parse(localStorage.getItem('Jwt')).userName;
+    
+
+          fetch("http://3.229.127.143:8095/getAppointmentsByPatientId/Completed",{
+                    headers: {
+                      'Content-Type': "application/json",
+                      'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    }, 
+                    method:"GET"})
+            .then((data) => data.json())
+            .then((data) => {
+              data.forEach((el) => {
+                el["reschedule"] = "Reschedule";
+              });
+              data.forEach((el) => {
+                el["RR"] = "Review";
+              });
+
+
+              localStorage.setItem("user_past_appointment", JSON.stringify(data));
+              $("#user_past_appointment").DataTable({
+                data: data,
+                columns: [
+                { data: "first_name",
+                render: function (data, type, row, meta) {
+                      console.log(row);
+                      if (type === "display") {
+                        data =
+                          row.first_name + " " + row.last_name
+                      }
+                      return data;
+                    },
+              },
+                  { data: "speciality"},
+                  { data: "appointmentMode"},
+                  { data: "timeSlot" ,
+                render: function (data, type, row, meta) {
+                      console.log(row);
+                      if (type === "display") {
+                        data =
+                        row.timeSlot.substring(4,14)
+                      }
+                      return data;
+                    },},
+                    { data: "timeSlot" ,
+                render: function (data, type, row, meta) {
+                      console.log(row);
+                      if (type === "display") {
+                        data =
+                          row.timeSlot.substring(15) + ":00"
+                      }
+                      return data;
+                    },},
+                    { data: "status" },
+                  { data: "cancelReason" },
+                  
+                  {
+                    data: "reschedule",
+                    render: function (data, type, row, meta) {
+                      console.log(row);
+                      if (type === "display") {
+                        data =
+                          `<a href="Appointment_Booking.html">` +
+                          data +
+                          "</a>";
+                      }
+                      return data;
+                    },
+                  },
+                  {
+                    data: "RR",
+                    render: function (data, type, row, meta) {
+                      console.log(row);
+                      if (type === "display") {
+                        data =
+                          `<a href="ReviewRating.html?appointmentId=${row.appointmentId}"">` +
+                          data +
+                          "</a>";
+                      }
+                      return data;
+                    },
+                  },
+
+                ],
+              });
+            });
+  
+
+        } )
+
+        function logout(){
+                   localStorage.removeItem('Jwt'); 
+	              }
+         </script>
+
+  </body>
+  </html>
+
+ <script>
+     function AddComplaint(){
+         window.location.href = "User_Support.html";
+     }
+ </script>
+
+<footer class="footer section gray-bg" style="padding: 2%;">
+  <div class="row">
+<label><b>© Camo Platforms Inc. All rights reserved</b></label>
+</div>
+</footer>

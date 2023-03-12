@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <title>Parama Care</title>
+
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="plugins/icofont/icofont.min.css" />
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+
+    <!-- jQuery library file -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <!-- Datatable plugin JS library file -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  </head>
+
+  <body id="top">
+    <header>
+      <nav class="navbar navbar-expand-lg navigation" id="navbar" style="background: aliceblue">
+        <div class="container" style="display: contents; margin: 0%">
+            <a class="navbar-brand" href="Admin_Complaints_Open.html">
+                <img src="images/camohealth.png" alt="" class="img-fluid">
+            </a>
+
+          <button
+            class="navbar-toggler collapsed"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarmain"
+            aria-controls="navbarmain"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="icofont-navigation-menu"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarmain">
+            <ul class="navbar-nav ml-auto">
+
+              <li class="nav-item"><a class="nav-link" href="Admin_Complaints_Open.html">Complaints</a></li>
+              <li class="nav-item"><a class="nav-link" href="Admin_Patient_Details.html">Patient</a></li>
+              <li class="nav-item">
+        <a class="nav-link"  id="dropdown02" aria-haspopup="true" aria-expanded="false" style="color: blue;" href="Admin_Practitioner_Requests.html">Practitioner</a>
+        </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Admin_Video_Upload.html" style="color: blue">Videos</a>
+              </li>
+              <li class="nav-item"><a class="nav-link" onclick="logout()" href="Admin_index.html">Logout</a></li>
+              <li class="nav-item"><a class="nav-link" >Welcome <span id="userName"></a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <section class="section appoinment" style="padding-top: 0.5%;margin: 2%;">
+        <div style="text-align-last: center;margin-left: 2%;">
+            <h4>Edit Video</h4>
+            <hr>
+        </div>
+        
+        <nav class="navbar navbar-expand-lg navigation" id="navbar">
+            <div id="snackbar">Video has been edited</div>
+            <div id="failure">Video could not be edited, please try again later</div>
+            <div class="container" style="display: contents; margin: 0%">
+              <div class="collapse navbar-collapse" id="navbarmain">
+                <ul class="navbar-nav" style="margin-left: 38%">
+                  <li class="nav-item"><a class="nav-link" href="Admin_Video_Upload.html">Upload a Video</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="Admin_Delete_Video.html" style="color: blue">Edit a Video</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    <div style="margin-left: 40%;">
+    <table>
+        <tr>
+        <div class="row">
+            <td  style="padding:0 15px 0 15px;">
+            <div>
+                <b>Video Name:</b>
+            </div>
+        </td>
+        <td>
+                <div >
+                    <input name="vname" id="vname" type="text" class="form-control">
+                    <label id="lblVname"><span style="color: red;"><i>Please Enter Video Name</i></span></label>
+                </div>
+            </td>  
+        </div>
+    </tr>
+    <tr>
+        <div class="row">
+            <td  style="padding:20px 20px 20px 20px;">
+            <div>
+                <b>Url</b>
+            </div>
+        </td>
+        <td>
+                <div >
+                    <input name="url" id="url" type="text" class="form-control">
+                    <label id="lblUrl"><span style="color: red;"><i>Please Enter Url</i></span></label>
+                </div>
+            </td>  
+        </div>
+    </tr> 
+    <tr>
+        <div class="row">
+            <td style="padding:20px 20px 20px 20px;">
+            <div>
+                <input style="padding:0 30px 0 30px; margin-left: 65%;" type="button" id="save" class="btn btn-main btn-round-full" onclick="save()"id="save" value="Save" /> 
+
+            </div>
+        </td>
+        
+        </div>
+    </tr>
+    <tr>
+    </tr>
+  
+    </table>
+    <div id="snackbar">Video has been edited</div>
+    </div>
+    </section>
+
+  
+   <script>
+
+       $(document).ready(function () {
+          addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+              event.preventDefault();
+              document.getElementById("save").click();
+          }
+          });
+        document.getElementById("userName").innerHTML = JSON.parse(localStorage.getItem('Jwt')).userName;
+        $('#lblVname').hide();
+		$('#lblUrl').hide();
+        const id = new URLSearchParams(window.location.search).get('videoId')
+                const local_data = JSON.parse(localStorage.getItem('deleteVideo'))
+                const current_user = local_data.find(el => {
+                if(el.id == id){
+                     return el
+                  }    
+
+                $.ajax({
+                url: 'http://3.229.127.143:8095/api/hub/videos/afterLogin/getVideoById/'+id,
+                type: "GET",
+                headers: {
+                      'Content-Type': "application/json",
+                      'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                    }, 
+                success: function (data) {
+                    console.log(data);
+                    $('#vname').val(data.videoName) ;
+                    $('#url').val(data.url) ;
+                
+
+                },
+                error: function (error) {
+                    alert(error.responseText);
+                }
+            });
+        } )
+        
+    });
+        function save(){
+            const id = new URLSearchParams(window.location.search).get('videoId')
+           
+              $.ajax({
+           
+                url: 'http://3.229.127.143:8095/api/hub/editVideo/'+id,
+                type: "PUT",
+                headers: {
+                            'Content-Type': "application/json",
+                            'Authorization': `Bearer ${JSON.parse(localStorage.getItem('Jwt')).jwt}`
+                            },
+                data: JSON.stringify({
+                    videoName: $('#vname').val(),
+                    url:$('#url').val()
+
+			}),                           
+            success: function (data) {
+                
+                    console.log(data);
+                    
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+           
+            
+           },
+           error: function (error) {
+            console.log(data);
+                    
+                    var x = document.getElementById("failure");
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+              
+           }
+          
+       })
+               
+	}
+  
+  function logout(){
+    localStorage.removeItem('Jwt'); 
+	}
+
+    </script>
+  
+  </body>
+</html>
+
+<footer class="footer section gray-bg" style="padding: 2%;">
+  <div class="row">
+      <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+  </div>
+</footer>

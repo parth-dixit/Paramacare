@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  ================================================== -->
+  <!-- <meta charset="utf-8"> -->
+  <title>Camo Health - Admin</title>
+
+ 
+  <link rel="stylesheet" href="plugins/themefisher-font/style.css">
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  
+  <!-- Animate css -->
+  <link rel="stylesheet" href="plugins/animate/animate.css">
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" href="plugins/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick/slick-theme.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- <link rel="stylesheet" href="css/datatables.css"> -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/dt-1.10.11,r-2.0.2/datatables.min.css">
+</head>
+
+<body id="body">
+
+<!-- Start Top Header Bar -->
+<!-- Start Top Header Bar -->
+<section class="top-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-xs-12 col-sm-4">
+				<!-- <div class="contact-number">
+					<i class="tf-ion-ios-telephone"></i>
+					<span>0129- 12323-123123</span>
+				</div> -->
+			</div>
+			<div class="col-md-3 col-xs-10 col-sm-4">
+				<!-- Site Logo -->
+				<div class="logo text-center">
+					<!-- <a href="index.html"> -->
+						<!-- replace logo here -->
+						<!-- <svg width="335px" height="29px" viewBox="0 0 155 29" version="1.1" xmlns="http://www.w3.org/2000/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink"> -->
+							<!-- <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-size="40"
+								font-family="AustinBold, Austin" font-weight="bold">
+								<g id="Group" transform="translate(-108.000000, -297.000000)" fill="#000000">
+									<text id="AVIATO">
+										<tspan x="108.94" y="325">Camo Health</tspan>
+									</text>
+								</g>
+							</g> -->
+							<img src="images/camohealth.png" width="100%" height:auto>
+						<!-- </svg> -->
+					<!-- </a> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<!-- Main Menu Section -->
+<section class="menu">
+	<nav class="navbar navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<h2 class="menu-title">Main Menu</h2>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+					aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+
+			</div><!-- / .navbar-header -->
+
+			<!-- Navbar Links -->
+			<div id="navbar" class="navbar-collapse collapse text-center">
+				<ul class="list-inline dashboard-menu text-center">
+
+					<!-- Home -->
+					<li class="dropdown ">
+						<a class = "active" href="Complaints.html">Complaints</a>
+					</li><!-- / Home -->
+
+					<li class="dropdown ">
+						<a href="PatientDetails.html">Patient Details</a>
+					</li>
+					<li class="dropdown ">
+						<a href="PractitionerRequests.html">Practitioner Details</a>
+					</li>
+					<li class="dropdown ">
+						<a href="Videos.html">Videos</a>
+					</li>
+					<li class="dropdown ">
+						<a href="Appointments.html">Appointments</a>
+					</li>
+				
+		</div>
+	</nav>
+</section>
+
+<section class="page-header" style="background: linear-gradient(180deg, rgba(0, 122, 254, 0.5) 0%, rgba(0, 122, 254, 0) 100%);">
+	<div class="container" >
+		<div class="row" >
+			<div class="col-md-15">
+				<div class="content">
+					<h1 class="page-name">Complaints</h1>
+					<!-- <ol class="breadcrumb">
+						<li><a href="index.html">Home</a></li>
+						<li class="active">my account</li>
+					</ol> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="container">  
+    <!--<h1 align="center">Show JSON Data in Jquery Datatables</h3><br />  
+    <h3 align="center">Employee Database</h3><br />  -->
+    <table id="example" class="table table-striped" width="100%"></table>
+        
+</div>  
+
+<!-- <style>
+    th{ 
+        color:#fff;
+            }
+</style> -->
+
+
+<!-- <table class="table table-striped">
+
+    <tr  class="bg-info">
+        <th><center>Practitioner Name</center></th>
+        <th><center>Speciality</center></th>
+        <th><center>Format</center></th>
+        <th><center>Date & Time</center></th> -->
+        <!-- <th>Zipcode</th> -->
+        <!-- <th><center>Action</center></th>
+    </tr>
+
+    <tbody id="myTable">
+        
+    </tbody>
+</table>
+
+<script> 
+	var myArray = [
+	    {'name':'Alan', 'age':'Sleep Therapy', 'format':'Online', 'date':'11-27-2022 14:20:00' },
+	    {'name':'Abhi', 'age':'Sleep Therapy', 'format':'Online', 'date':'11-27-2022 14:20:00' },
+	    {'name':'Paul', 'age':'Sleep Therapy', 'format':'Online', 'date':'11-27-2022 14:20:00' },
+	    {'name':'Dennis','age':'Sleep Therapy', 'format':'Online', 'date':'11-27-2022 14:20:00'},
+	    {'name':'Tim', 'age':'Sleep Therapy', 'format':'Online', 'date':'11-27-2022 14:20:00'},
+	    {'name':'Erik', 'age':'Sleep Therapy', 'format':'Online', 'date':'11-27-2022 14:20:00'},
+	]
+	
+	buildTable(myArray)
+
+
+
+	function buildTable(data){
+		var table = document.getElementById('myTable')
+
+		for (var i = 0; i < data.length; i++){
+			var row = `<tr>
+							<td><center>${data[i].name}</center></td>
+							<td><center>${data[i].age}</center></td>
+                            <td><center>${data[i].format}</center></td>
+							<td><center>${data[i].date}</center></td>
+                            <td><center><a href="appoinment.html" target="_blank">Schedule</a></center> </td>
+					  </tr>`
+			table.innerHTML += row
+
+
+		}
+	}
+
+</script>  --> 
+
+
+
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+    
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.1 -->
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Touchpin -->
+    <script src="plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+    <!-- Instagram Feed Js -->
+    <script src="plugins/instafeed/instafeed.min.js"></script>
+    <!-- Video Lightbox Plugin -->
+    <script src="plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
+    <!-- Count Down Js -->
+    <script src="plugins/syo-timer/build/jquery.syotimer.min.js"></script>
+
+    <!-- slick Carousel -->
+    <script src="plugins/slick/slick.min.js"></script>
+    <script src="plugins/slick/slick-animation.min.js"></script>
+
+    <!-- Google Mapl -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+    <script type="text/javascript" src="plugins/google-map/gmap.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>  
+
+    <!-- Main Js File -->
+    <script src="js/script.js"></script>
+    <script>  
+        var dataSet = [
+            ["Abhi Vijayakumar","Sleep Therapy", "Open", "11-27-2022 14:20:00","<a href='ComplaintsView.html'>View Details</a>"],
+            ["Alan",  "Sleep Therapy", "Open", "11-27-2022 14:20:00","<a href='ComplaintsView.html'>View Details</a>"],
+            ["Paul", "Sleep Therapy", "Open", "11-27-2022 14:20:00","<a href='ComplaintsView.html'>View Details</a>" ],
+            ["Dennis",  "Sleep Therapy", "Open", "11-27-2022 14:20:00","<a href='ComplaintsView.html'>View Details</a>"],
+            ["Tim",  "Sleep Therapy", "Open", "11-27-2022 14:20:00","<a href='ComplaintsView.html'>View Details</a>"],
+            ["Erik",  "Sleep Therapy", "Closed", "11-27-2022 14:20:00","<a href='ComplaintsView.html'>View Details</a>"],
+            ["Alan", "Sleep Therapy", "Open", "11-27-2022 14:20:00","<a href='ComplaintsView.html'>View Details</a>"],
+            ["Alan", "Sleep Therapy", "Open", "11-27-2022 14:20:00","<a href='ComplaintsView.html'>View Details</a>"]
+        ];
+         
+        $(document).ready(function() {
+            $('#example').DataTable( {
+                data: dataSet,
+                columns: [
+                    { title: "Name" },
+                    { title: "Summary" },
+                    { title: "Status" },
+					{ title: "Date" }	
+                ],
+				"fnRowCallback" : function(nRow, aData, iDisplayIndex){
+					if(aData[2] == "Open"){
+						console.log(aData);
+						$('td:eq(2)', nRow).html('<a href=\"'+aData[4]  +'\">'+ aData[2]+'</a>')
+
+					}
+
+				}
+				
+			
+            } );
+           
+        } );""
+         </script>  
+
+
+  </body>
+  </html>

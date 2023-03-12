@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <title>Parama Care</title>
+
+    <!-- Google Maps JavaScript library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAaZx5Ud1-T3oLP6s0LFafIVgUkO_x9o7o"></script>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css" />
+    <!-- Icon Font Css -->
+    <link rel="stylesheet" href="plugins/icofont/icofont.min.css" />
+    <!-- Slick Slider  CSS -->
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css" />
+    <link
+      rel="stylesheet"
+      href="plugins/slick-carousel/slick/slick-theme.css"
+    />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body id="top">
+    <header>
+      <nav
+        class="navbar navbar-expand-lg navigation"
+        id="navbar"
+        style="background: aliceblue"
+      >
+        <div class="container" style="display: contents; margin: 0%">
+          <a class="navbar-brand" href="index.html">
+            <img
+              src="images/camohealth.png"
+              alt="Camo Health"
+              class="img-fluid"
+            />
+          </a>
+
+          <button
+            class="navbar-toggler collapsed"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarmain"
+            aria-controls="navbarmain"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="icofont-navigation-menu"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarmain">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="EducationHub.html">Resources</a>
+              </li>
+              <div class="btn-container">
+                <a
+                  href="Login_Users.html"
+                  class="btn btn-main-2 btn-icon btn-round-full"
+                  >Schedule Appoinment
+                </a>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <section class="section appoinment" style="padding-top: 0.5%">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div id="snackbar">You have been Registered</div>
+                                <div id="failure">Something went wrong, please try again later</div>
+            <div class="appoinment-content">
+              <img src="images/about/l1.png" alt="" class="img-fluid" />
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-10">
+            <div class="appoinment-wrap mt-5 mt-lg-0">
+              <h2 class="mb-2 title-color">Registration</h2>
+              <form id="#" class="appoinment-form" method="post" action="#">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      First Name:<span style="color: red">*</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input
+                        name="fname"
+                        id="fname"
+                        type="text"
+                        class="form-control"
+                      />
+                      <label id="lblFname"
+                        ><span style="color: red"
+                          ><i>Please Enter First Name</i></span
+                        ></label
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      Last Name:<span style="color: red">*</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input
+                        name="lname"
+                        id="lname"
+                        type="text"
+                        class="form-control"
+                      />
+                      <label id="lblLname"
+                        ><span style="color: red"
+                          ><i>Please Enter Last Name</i></span
+                        ></label
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      Date of Birth:
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input
+                        name="dob"
+                        id="dob"
+                        type="date"
+                        class="form-control"
+                      />
+                      <label id="lblDOB"
+                        ><span style="color: red"
+                          ><i>Please Enter Date of Birth</i></span
+                        ></label
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      Address (Line 1):<span style="color: red">*</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input
+                        name="add1"
+                        id="add1"
+                        type="text"
+                        class="form-control"
+                      />
+                      <input
+                        name="g-lat-long"
+                        id="g-lat-long"
+                        type="hidden"
+                        hidden
+                      />
+                      <label id="lblAdd1"
+                        ><span style="color: red"
+                          ><i>Please Enter Address</i></span
+                        ></label
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      Address (Line 2):
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input
+                        name="add2"
+                        id="add2"
+                        type="text"
+                        class="form-control"
+                        placeholder="Optional"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      City:<span style="color: red">*</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input
+                        name="city"
+                        id="city"
+                        type="text"
+                        class="form-control"
+                        readonly
+                      />
+                      <label id="lblCity"
+                        ><span style="color: red"
+                          ><i>Please Enter City</i></span
+                        ></label
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      State:
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input
+                        name="state"
+                        id="state"
+                        type="text"
+                        class="form-control"
+                        readonly
+                      />
+                      <label id="lblState"
+                        ><span style="color: red"
+                          ><i>Please Enter State</i></span
+                        ></label
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      Zipcode:<span style="color: red">*</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input
+                        name="zip"
+                        id="zip"
+                        type="text"
+                        class="form-control"
+                        max="4"
+                      />
+                      <label id="lblZip"
+                        ><span style="color: red"
+                          ><i>Please Enter Zip code</i></span
+                        ></label
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      Phone:<span style="color: red">*</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input
+                        name="contact"
+                        id="contact"
+                        type="text"
+                        class="form-control"
+                        pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                      />
+                      <label id="lblContact"
+                        ><span style="color: red"
+                          ><i>Please Enter Contact</i></span
+                        ></label
+                      >
+                      <label id="lblPhone"
+                      ><span style="color: red"
+                        ><i>Phone Number should be less than 10 digits</i></span
+                      ></label
+                    >
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      Email:<span style="color: red">*</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input
+                        name="email"
+                        id="email"
+                        type="text"
+                        class="form-control"
+                      />
+                      <label id="lblEmail"
+                        ><span style="color: red"
+                          ><i>Please Enter Email</i></span
+                        ></label
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      Insurance number:<span style="color: red">*</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input
+                        name="inum"
+                        id="inum"
+                        type="text"
+                        class="form-control"
+                      />
+                      <label id="lblInum"
+                        ><span style="color: red"
+                          ><i>Please Enter Insurance Number</i></span
+                        ></label
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      Insurance Plan:<span style="color: red">*</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input
+                        name="iplan"
+                        id="iplan"
+                        type="text"
+                        class="form-control"
+                      />
+                      <label id="lblIplan"
+                        ><span style="color: red"
+                          ><i>Please Enter Insurance Plan</i></span
+                        ></label
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      Insurance copy:<span style="color: red">*</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <label id="lblFile1"><span style="color: red;"><i>Please attach your insurace card</i></span></label>
+                    <div class="form-group" style="display: grid;">
+                        <input type="button" class="btn btn-main btn-round-full" id="btnFileUpload1" value="Attach"/>
+                        <span id="spnFilePath1"></span>
+                        <input type="file" id="FileUpload1" style="display: none" />
+                    </div>
+                </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      Password:<span style="color: red">*</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input
+                        name="password"
+                        id="password"
+                        type="password"
+                        class="form-control"
+                      />
+                      <label id="lblPassword"
+                        ><span style="color: red"
+                          ><i>Please Enter Password</i></span
+                        ></label
+                      >
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      Confirm Password:<span style="color: red">*</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input
+                        name="passwordc"
+                        id="passwordc"
+                        type="password"
+                        class="form-control"
+                      />
+                      <label id="lblPasswordc"
+                        ><span style="color: red"
+                          ><i>Passwords do not match</i></span
+                        ></label
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div style="text-align-last: center; padding-top: 5%">
+                  <a
+                    class="btn btn-main btn-round-full"
+                    id="register"
+                    onclick="register()"
+                    style="color: white"
+                    >Create Account</a
+                  >
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/jquery.js"></script>
+    <!-- Bootstrap 4.3.2 -->
+    <script src="plugins/bootstrap/js/popper.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/counterup/jquery.easing.js"></script>
+    <!-- Slick Slider -->
+    <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+    <!-- Counterup -->
+    <script src="plugins/counterup/jquery.waypoints.min.js"></script>
+
+    <script src="plugins/shuffle/shuffle.min.js"></script>
+    <script src="plugins/counterup/jquery.counterup.min.js"></script>
+
+    <!-- Google Map -->
+    <script src="js/google-map-services.js"></script>
+
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+    <script type="text/javascript">
+      $(function () {
+        var fileupload1 = $("#FileUpload1");
+        var filePath = $("#spnFilePath1");
+        var button = $("#btnFileUpload1");
+        button.click(function () {
+          fileupload1.click();
+        });
+        fileupload1.change(function () {
+          var fileName = $(this).val().split("\\")[
+            $(this).val().split("\\").length - 1
+          ];
+          filePath.html("<b>Selected File: </b>" + fileName);
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("register").click();
+        }
+        });
+        $("#lblEmail").hide();
+        $("#lblPassword").hide();
+        $("#lblPasswordc").hide();
+        $("#lblFname").hide();
+        $("#lblLname").hide();
+        $("#lblContact").hide();
+        $("#lblPhone").hide();
+        $("#lblDOB").hide();
+        $("#lblAdd1").hide();
+        $("#lblCity").hide();
+        $("#lblZip").hide();
+        $("#lblInum").hide();
+        $("#lblIplan").hide();
+        $("#lblFile1").hide();
+        $("#lblState").hide();
+      });
+    </script>
+  </body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+  
+  function register() {
+    var count = 0;
+    if ($("#email").val() == "") {
+      $("#lblEmail").show();
+      count++;
+    } else {
+      $("#lblEmail").hide();
+    }
+    if ($("#password").val() == "") {
+      $("#lblPassword").show();
+      count++;
+    } else {
+      $("#lblPassword").hide();
+    }
+    if ($("#fname").val() == "") {
+      $("#lblFname").show();
+      count++;
+    } else {
+      $("#lblFname").hide();
+    }
+    if ($("#lname").val() == "") {
+      $("#lblLname").show();
+      count++;
+    } else {
+      $("#lblLname").hide();
+    }
+    if ($("#dob").val() == "") {
+      $("#lblDOB").show();
+      count++;
+    } else {
+      $("#lblDOB").hide();
+    }
+
+    if ($("#add1").val() == "") {
+      $("#lblAdd1").show();
+      count++;
+    } else {
+      $("#lblAdd1").hide();
+    }
+
+    if ($("#contact").val() == "") {
+      $("#lblContact").show();
+      count++;
+    } else {
+      $("#lblContact").hide();
+    }
+    if ($("#contact").val().length >10) {
+      $("#lblPhone").show();
+      count++;
+    } else {
+      $("#lblPhone").hide();
+    }
+
+    if ($("#zip").val() == "") {
+      $("#lblZip").show();
+      count++;
+    } else {
+      $("#lblZip").hide();
+    }
+
+    if ($("#city").val() == "") {
+      $("#lblCity").show();
+      count++;
+    } else {
+      $("#lblCity").hide();
+    }
+    if ($("#state").val() == "") {
+      $("#lblState").show();
+      count++;
+    } else {
+      $("lblState").hide();
+    }
+
+    if ($("#passwordc").val() != $("#password").val()) {
+      $("#lblPasswordc").show();
+      count++;
+    } else {
+      $("lblPasswordc").hide();
+    }
+    if ($("#inum").val() == "") {
+      $("#lblIum").show();
+      count++;
+    } else {
+      $("lblInum").hide();
+    }
+    if ($("#iplan").val() == "") {
+      $("#lblIplan").show();
+      count++;
+    } else {
+      $("lblIplan").hide();
+    }
+    if (count > 0) {
+      return false;
+    }
+
+    let lat = "";
+    let long = "";
+
+    if ($("#g-lat-long").val() != "") {
+      lat = $("#g-lat-long").val().split(",")[0];
+      long = $("#g-lat-long").val().split(",")[1];
+    }
+
+    var jsondata= JSON.stringify({  firstName:$('#fname').val(),
+        lastName:$('#lname').val(),
+        address1:$('#add1').val(),
+        address2:$('#add2').val(),
+        zipcode:$('#zip').val(),
+        city:$('#city').val(),
+        state:$('#state').val(),
+        phoneNumber:$('#contact').val(),
+        userType:'Patient',
+        dateOfBirth:$('#dob').val(),
+        specialityId:null,
+        email:$('#email').val(),
+        password:$('#password').val(),
+        insuranceNum:$('#inum').val(),
+        insurancePlan:$('#iplan').val(),
+
+        latitude: lat,
+      longitude: long,});
+
+        var data = new FormData();
+        data.append('jsondata',jsondata);
+        data.append('license',null);
+        data.append('certificate',null);
+
+        data.append('insurancecard', $('#FileUpload1')[0].files[0]),
+
+    $.ajax({
+      url: "http://3.229.127.143:8095/beforeLogin/signUp",
+      type: "POST",
+      data: data,
+    cache:false,
+    processData:false,
+    contentType:false,
+      success: function (data) {
+        //TOASTER added
+        localStorage.setItem('Jwt', JSON.stringify(data));     
+        var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(() => { window.location.href = "Questionnaire.html" ; }, 1000);
+      },
+      error: function (error) {
+        var x = document.getElementById("failure");
+                    x.className = "show";
+                    x.innerText = error.responseText;
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+      },
+    });
+  }
+</script>
+
+<footer class="footer section gray-bg" style="padding: 2%;">
+  <div class="row">
+      <label><b>© Camo Platforms Inc. All rights reserved</b></label>
+  </div>
+</footer>
